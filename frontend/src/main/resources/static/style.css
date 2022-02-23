@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+
+body{
+    font-family: 'Quicksand', sans-serif !important;
+}
+
+
+.header{
+background-color: #380036 !important;
+
+}
+.body {
+    background-color: black;
+}
+
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #26081C;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, #26081C, #0CBABA);
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right,#26081C, #0CBABA)
+}
+
+
+/*
+Till den förra login.
+.loginplate{
+
+  background-color: #01BAEF;
+  border: 10px solid #0CBABA;
+  max-width: 700px;
+  width: 100%;
+
+  height: 50vh;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+
+  position:absolute;
+  right:0;
+  left:0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+} */
+

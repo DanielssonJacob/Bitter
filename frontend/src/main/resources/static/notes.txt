@@ -1,0 +1,11 @@
+COLORS:
+
+#01BAEF - Turkos
+
+#0CBABA - Grönare turkos
+
+#380036 - Lila
+
+#26081C - Mörklila
+
+#150811 - Svartlila
