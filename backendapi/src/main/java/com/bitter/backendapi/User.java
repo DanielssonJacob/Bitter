@@ -6,9 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -16,6 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class User {
 
+    @PositiveOrZero
     long id;
     @Size(min=1, max=30)
     private String username;
