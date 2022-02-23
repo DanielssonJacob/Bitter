@@ -45,4 +45,8 @@ public class UserRepository {
         }
     }
 
+    public List<User> getAllUsers(){
+        return users;
+    }
+
 }
