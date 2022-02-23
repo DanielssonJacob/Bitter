@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+/*
+ColorPalette
+#01BAEF
+#0cbaba
+#380036
+#26081C
+#150811
+#ffff
+*/
+
+h1,h2,h3,h4,p, {
+    font-family: 'Quicksand', sans-serif !important;
+
+}
+
+.display-3{
+    font-family: 'Quicksand', sans-serif !important;
+}
+
+.btn-primary{
+    background-color: #0cbaba !important;
+    border-color: #0cbaba !important;
+    color: white !important;
+}
+
+
+.form-control{
+   font-family: 'Quicksand', sans-serif;
+}
+
+
+.form-group{
+    padding-bottom: 10px;
+}
+
+.form-group:last-of-type{
+    padding-bottom: 30px !important;
+}
+
+.card-body{
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+}
+
+
+

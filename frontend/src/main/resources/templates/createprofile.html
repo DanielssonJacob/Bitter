@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/style.css">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <title>login page</title>
+</head>
+<body>
+
+<main class="container">
+        <!--<p th:if="${loginError}" class="error">Wrong user or password</p>-->
+        <div class=" card col-12 col-lg-6 m-0 p-0 mx-auto ">
+            <div >
+                <div class="col-12 text-center">
+                    <h1 class="display-3">Create Profile</h1>
+                </div>
+            </div>
+            <form th:action="@{/createprofile}" method="post" class="card-body ">
+
+                <div class="form-group">
+                    <input type="email" class="form-control" id="email" placeholder="Enter Email">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="firstName" name="firstName" autofocus="autofocus" class="form-control" placeholder="Enter First Name"/>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="lastName" name="lastName" autofocus="autofocus" class="form-control" placeholder="Enter Last Name"/>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="userName" name="userName" autofocus="autofocus" class="form-control" placeholder="Enter a Username"/>
+                </div>
+
+                <div class="form-group">
+                    <input type="password"  id="password" autofocus="autofocus"  class="form-control" placeholder="Enter a password">
+                </div>
+
+                <input type="submit" value="Create Profile" class="btn btn-primary"/>
+
+            </form>
+        </div>
+
+</main>
+
+</main>
+</body>
+</html>
