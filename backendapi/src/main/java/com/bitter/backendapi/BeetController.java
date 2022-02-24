@@ -9,13 +9,14 @@ import java.util.List;
 public class BeetController {
 
     @Autowired BeetRepo repo;
+    @Autowired BeetService service;
 
     @GetMapping("/beet")
     public List<Beet> beets(){ return repo.getBeets(); }
 
     @PostMapping("/beet")
-    public void postBeet(@RequestBody Beet beet){
-         repo.createBeet(beet);
+    public void postBeet(@RequestBody String username, String message){
+         service.createBeet(username,message);
     }
 
     @GetMapping("beet/{id}")
@@ -24,18 +25,18 @@ public class BeetController {
     }
 
     @GetMapping("/beet/{username}")
-    public List<Beet> getBeetByUser(@RequestBody String username){
+    public List<Beet> getBeetByUser(@PathVariable String username){
         return repo.getBeetByUser(username);
     }
 
     @DeleteMapping("/beet/{id}")
-    public void deleteBeet(@RequestBody long id){
+    public void deleteBeet(@PathVariable long id){
        repo.deleteBeet(id);
     }
 
     @PutMapping("/beet/{id}")
-    public void editBeet(@RequestBody Beet beet){
-        repo.editBeet(beet);
+    public void editBeet(@PathVariable long id, String message){
+        service.editBeet(id, message);
     }
 
 }
