@@ -33,4 +33,25 @@ public class BeetRepo {
         return beets;
     }
 
+    public Beet getBeetById(long id){
+
+        for (Beet beet: beets) {
+            if (beet.getId() == id){
+               return beet;
+            }
+        }
+        return null;
+    }
+
+    public void editBeet(Beet newBeet){
+        for (Beet beet : beets) {
+            if(beet.getId() == newBeet.getId())
+                beet.setId(newBeet.getId());
+                beet.setMessage(newBeet.getMessage());
+                beet.setCreatedAt(newBeet.getCreatedAt());
+                beet.setCreatedByUsername(newBeet.getCreatedByUsername());
+                break;
+        }
+    }
+
 }
