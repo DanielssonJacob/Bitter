@@ -26,15 +26,13 @@
 
                                 <h2 class="fw-bold mb-2 text-uppercase">welcome to bitter</h2>
                                 <p class="text-white-50 mb-5">enter username and password</p>
-                                <form action="/login" th:object="${user}" method="POST">
+                                <form action="/login" th:object="${loginForm}" method="POST">
                                     <div class="form-outline form-white mb-4">
-                                        <small th:if="${#fields.hasErrors('firstName')}">invalid username</small>
-                                        <input type="email" th:field="*{email} "id="typeEmailX" autofocus="autofocus" placeholder="Enter Email" class="form-control form-control-lg" />
-                                        <label class="form-label" for="typeEmailX">Email</label>
+                                        <input type="text" th:field="*{username}" id="typeEmailX" autofocus="autofocus" placeholder="Enter Email" class="form-control form-control-lg" />
+                                        <label class="form-label" for="typeEmailX">Username</label>
                                     </div>
 
                                     <div class="form-outline form-white mb-4">
-                                        <small th:if="${#fields.hasErrors('firstName')}">invalid password</small>
                                         <input type="password" th:field="*{password}" id="typePasswordX" autofocus="autofocus" placeholder="Enter Password" class="form-control form-control-lg" />
                                         <label class="form-label" for="typePasswordX">Password</label>
                                     </div>
@@ -52,7 +50,7 @@
                             </div>
 
                             <div>
-                                <p class="mb-0">Don't have an account? <a href="localhost:8080/signup.html" class="text-white-50 fw-bold">Sign Up</a></p>
+                                <p class="mb-0">Don't have an account? <a href="/signup" class="text-white-50 fw-bold">Sign Up</a></p>
                             </div>
 
                         </div>

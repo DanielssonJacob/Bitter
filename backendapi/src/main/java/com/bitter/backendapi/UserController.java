@@ -37,13 +37,13 @@ public class UserController {
 
 
     @PostMapping("/adduserobj")
-    void addUserObj(@RequestBody User user){
-        userRepo.addUser(userService.createUser(user));
+    User addUserObj(@RequestBody User user){
+        return userRepo.addUser(userService.createUser(user));
     }
 
     @PostMapping("/validate")
-    boolean loginUser(@RequestParam String username, @RequestParam String password){
-        return userService.validate(userRepo.getUserByUsername(username),password);
+    boolean loginUser(@RequestBody LoginForm loginForm){
+        return userService.validate(userRepo.getUserByUsername(loginForm.getUsername()), loginForm.getPassword());
     }
 
     @PostMapping("/deleteuser")

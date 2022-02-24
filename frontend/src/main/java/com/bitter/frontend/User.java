@@ -3,6 +3,7 @@ package com.bitter.frontend;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import javax.validation.constraints.Email;
@@ -21,9 +22,10 @@ public class User {
     @Size(min=6, max=30)
     private String password;
     @Size(min=1, max=30)
-    private String firstName;
+    private String firstname;
     @Size(min=1, max=30)
-    private String lastName;
+    private String lastname;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
     @Email
     private String email;
@@ -33,8 +35,8 @@ public class User {
         this.id = id;
         this.username = username;
         this.password = hashPassword(password);
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstname = firstName;
+        this.lastname = lastName;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
     }
