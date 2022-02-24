@@ -11,6 +11,7 @@ public class BeetService {
     @Autowired BeetRepo repo;
 
     private final AtomicLong id = new AtomicLong(1452);
+
     public void createBeet(String username, String message) {
         Beet newBeet = new Beet(id.getAndIncrement(),message,LocalDateTime.now(),username);
         repo.createBeet(newBeet);
