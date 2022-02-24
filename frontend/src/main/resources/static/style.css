@@ -24,6 +24,12 @@ background-color: #380036 !important;
   background: linear-gradient(to right,#26081C, #0CBABA)
 }
 
+.btn-primary{
+    background-color: #0cbaba !important;
+    border-color: #0cbaba !important;
+    color: white !important;
+}
+
 
 /*
 Till den förra login.
