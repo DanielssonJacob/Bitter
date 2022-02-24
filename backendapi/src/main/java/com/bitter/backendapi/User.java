@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class User {
 
-    @PositiveOrZero
+
     long id;
     @Size(min=1, max=30)
     private String username;
