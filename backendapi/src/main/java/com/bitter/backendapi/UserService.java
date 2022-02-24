@@ -3,7 +3,6 @@ package com.bitter.backendapi;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.util.concurrent.atomic.AtomicLong;
@@ -20,5 +19,10 @@ public class UserService {
 
     public User createUser(String username, String password, String firstname, String lastname, String email){
         return new User(userId.getAndIncrement(),username,password,firstname,lastname, LocalDate.now(),email);
+    }
+
+    public User createUser(User user){
+        user.setId(userId.getAndIncrement());
+        return user;
     }
 }

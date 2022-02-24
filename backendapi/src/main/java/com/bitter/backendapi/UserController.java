@@ -38,7 +38,7 @@ public class UserController {
 
     @PostMapping("/adduserobj")
     void addUserObj(@RequestBody User user){
-        userRepo.addUser(user);
+        userRepo.addUser(userService.createUser(user));
     }
 
     @PostMapping("/validate")
