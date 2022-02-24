@@ -9,6 +9,9 @@ import java.util.List;
 public class UserController {
 
     @Autowired
+    UserService userService;
+
+    @Autowired
     UserRepository userRepo;
 
     @GetMapping("/userid/{id}")
@@ -29,6 +32,11 @@ public class UserController {
     @PostMapping("/adduser")
     void addUser(@RequestBody User user){
         userRepo.addUser(user);
+    }
+
+    @PostMapping("/validate")
+    boolean loginUser(@RequestParam String username, @RequestParam String password){
+        return userService.validate(userRepo.getUserByUsername(username),password);
     }
 
     @PostMapping("/deleteuser")
