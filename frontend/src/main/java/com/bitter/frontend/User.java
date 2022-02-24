@@ -34,7 +34,7 @@ public class User {
     public User(long id, String username, String password, String firstName, String lastName, LocalDate dateOfBirth, String email) {
         this.id = id;
         this.username = username;
-        this.password = hashPassword(password);
+        this.password = password;
         this.firstname = firstName;
         this.lastname = lastName;
         this.dateOfBirth = dateOfBirth;
@@ -45,7 +45,5 @@ public class User {
         return BCrypt.hashpw(password, BCrypt.gensalt(10));
     }
 
-    public void setPassword(String password) {
-        this.password = this.hashPassword(password);
-    }
+
 }

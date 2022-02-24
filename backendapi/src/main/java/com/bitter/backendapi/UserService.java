@@ -5,6 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Service
@@ -14,7 +15,7 @@ public class UserService {
 
 
     public boolean validate(User user, String password){
-        return BCrypt.checkpw(password,user.getPassword());
+        return password.equals(user.getPassword());
     }
 
     public User createUser(String username, String password, String firstname, String lastname, String email){

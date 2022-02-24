@@ -5,8 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.thymeleaf.templateparser.markup.HTMLTemplateParser;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
 
 @Controller
 public class FrontendController {
@@ -45,10 +48,14 @@ public class FrontendController {
      */
 
     @PostMapping("/login")
-    public String login (@ModelAttribute LoginForm loginForm, RestTemplate restTemplate){
+    public String login (@ModelAttribute LoginForm loginForm, RestTemplate restTemplate, HttpSession session){
         boolean result = (restTemplate.postForObject("http://localhost:8081/validate",loginForm,Boolean.class));
         System.out.println(result);
         if(result){
+            session.setAttribute("currentUser", restTemplate.getForObject("http://localhost:8081/username/"+loginForm.getUsername(),User.class));
+            session.setAttribute("beets",  restTemplate.getForObject(
+                    "http://localhost:8081/beet/"+((User)session.getAttribute("currentUser")).getUsername(),
+                    ArrayList.class));
             return "home";
         }
         return "redirect:/";

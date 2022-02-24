@@ -38,6 +38,7 @@ public class UserController {
 
     @PostMapping("/adduserobj")
     User addUserObj(@RequestBody User user){
+        System.out.println("Called");
         return userRepo.addUser(userService.createUser(user));
     }
 
