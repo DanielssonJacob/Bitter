@@ -4,7 +4,6 @@ body{
     font-family: 'Quicksand', sans-serif !important;
 }
 
-
 .header{
 background-color: #380036 !important;
 
@@ -28,6 +27,11 @@ background-color: #380036 !important;
     background-color: #0cbaba !important;
     border-color: #0cbaba !important;
     color: white !important;
+}
+
+small{
+    color: red !important
+
 }
 
 
