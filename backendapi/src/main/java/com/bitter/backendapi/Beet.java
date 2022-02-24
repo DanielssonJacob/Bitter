@@ -17,12 +17,11 @@ public class Beet {
         @NotEmpty @Positive
         private long id;
         @NotEmpty @Max(140)
-        private String beet;
+        private String message;
         @NotEmpty
         private LocalDateTime createdAt;
         @NotEmpty @Max(30)
         private String createdByUsername;
-        @NotEmpty @Email
-        private String email;
+
 
 }
