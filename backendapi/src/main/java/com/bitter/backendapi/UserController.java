@@ -3,6 +3,7 @@ package com.bitter.backendapi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -30,7 +31,13 @@ public class UserController {
     }
 
     @PostMapping("/adduser")
-    void addUser(@RequestBody User user){
+    void addUser(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname, @RequestParam("email") String email){
+        userRepo.addUser(userService.createUser(username,password,firstname,lastname,email));
+    }
+
+
+    @PostMapping("/adduserobj")
+    void addUserObj(@RequestBody User user){
         userRepo.addUser(user);
     }
 
@@ -43,6 +50,7 @@ public class UserController {
     void deleteUser(@RequestBody User user){
         userRepo.deleteUserById(user.getId());
     }
+
 
 
 
