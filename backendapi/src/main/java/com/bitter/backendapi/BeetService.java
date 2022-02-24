@@ -21,4 +21,5 @@ public class BeetService {
         Beet edited = new Beet(id, message, LocalDateTime.now(), repo.getBeetById(id).getCreatedByUsername());
         repo.editBeet(edited);
     }
+
 }

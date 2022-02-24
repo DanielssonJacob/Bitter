@@ -19,7 +19,7 @@ public class BeetController {
          service.createBeet(username,message);
     }
 
-    @GetMapping("/beet/{id}")
+    @GetMapping("/beetid/{id}")
     public Beet getBeetById(@PathVariable long id){
         return repo.getBeetById(id);
     }
