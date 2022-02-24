@@ -23,5 +23,4 @@ public class Beet {
         @NotEmpty @Max(30)
         private String createdByUsername;
 
-
 }
