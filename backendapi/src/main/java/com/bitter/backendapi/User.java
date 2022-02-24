@@ -6,7 +6,6 @@ import lombok.Setter;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
