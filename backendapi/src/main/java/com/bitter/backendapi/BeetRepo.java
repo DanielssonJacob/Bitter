@@ -10,6 +10,10 @@ public class BeetRepo {
 
     private List<Beet> beets;
 
+    public BeetRepo(){
+        beets= new ArrayList<>();
+    }
+
     public void createBeet(Beet beet){
         beets.add(beet);
     }

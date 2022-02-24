@@ -15,7 +15,7 @@ public class BeetController {
     public List<Beet> beets(){ return repo.getBeets(); }
 
     @PostMapping("/beet")
-    public void postBeet(@RequestBody String username, String message){
+    public void postBeet(@RequestParam("username") String username, @RequestParam("message") String message){
          service.createBeet(username,message);
     }
 
