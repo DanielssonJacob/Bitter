@@ -33,31 +33,41 @@
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
-                                    <small th:if="${#fields.hasErrors('firstName')}">Incorrect value in firstName!</small>
+                                    <small th:if="${#fields.hasErrors('firstName')}">Incorrect value in First Name!</small>
                                     <input type="text" th:field="*{firstName}" id="firstName" name="firstName" autofocus="autofocus"  placeholder="Enter First Name" class="form-control form-control-lg"/>
+<!--
                                     <label class="form-label" for="firstName">First Name</label>
+-->
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
+                                    <small th:if="${#fields.hasErrors('lastName')}">Incorrect value in Last Name!</small>
                                     <input type="text" th:field="*{lastName}" id="lastName" name="lastName" autofocus="autofocus" placeholder="Enter Last Name" class="form-control form-control-lg"/>
+<!--
                                     <label class="form-label" for="lastName">Last Name</label>
+-->
                                 </div>
                                 <div class="form-outline form-white mb-4">
+                                    <small th:if="${#fields.hasErrors('dateOfBirth')}">Incorrect value in Date of Birth!</small>
                                     <input type="text" th:field="*{dateOfBirth}" id="dateOfBirth" name="dateOfBirth" autofocus="autofocus" placeholder="Enter your " class="form-control form-control-lg"/>
-                                    <label class="form-label" for="userName">Date Of Birth </label>
+<!--
+                                    <label class="form-label" for="userName">Date of Birth </label>
+-->
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
+                                    <small th:if="${#fields.hasErrors('userName')}">Incorrect value in Username!</small>
                                     <input type="text" th:field="*{userName}" id="userName" name="userName" autofocus="autofocus" placeholder="Enter a Username" class="form-control form-control-lg"/>
-                                    <label class="form-label" for="userName">User Name</label>
+<!--
+                                    <label class="form-label" for="userName">Username</label>
+-->
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
+                                    <small th:if="${#fields.hasErrors('firstName')}">Incorrect value in Password!</small>
                                     <input type="password" th:field="*{password}" id="typePasswordX" autofocus="autofocus" placeholder="Enter Password" class="form-control form-control-lg" />
-                                    <label class="form-label" for="typePasswordX">Password</label>
+                                    <label class="form-label" for="typePasswordX">Enter a password between 8 -30 characters </label>
                                 </div>
-
-                                <!--<p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p> -->
 
                                 <button class="btn btn-primary btn-lg px-5" type="submit" value="login">Sign Up</button>
                             </form>
