@@ -6,6 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../static/style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon-32x32.png"> <!--added a favicon-->
+
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
@@ -16,66 +18,67 @@
 </head>
 <body>
 
-    <h1 th:text="${session.currentUser.getUsername}"></h1>
-    <div class="d-md-flex h-md-100 align-items-center">
+<h1 th:text="${session.currentUser.getUsername}"></h1>
+<div class="d-md-flex h-md-100 align-items-center">
 
-        <!-- First Half -->
-        <div class="col-md-6 p-0 bg-indigo h-md-100">
-            <div class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
-                <div class="logoarea pt-5 pb-5">
+    <!-- First Half -->
+    <div class="col-md-6 p-0 bg-indigo h-md-100">
+        <div class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
+            <div class="logoarea pt-5 pb-5">
 
-                    <h3>4 Comments</h3>
+                <h3>4 Comments</h3>
 
-                    <!-- COMMENT 1 - START -->
-                    <div class="media">
-                        <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""></a>
-                        <div class="media-body">
-                            <h4 class="media-heading">John Doe</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            <ul class="list-unstyled list-inline media-detail pull-left">
-                                <li><i class="fa fa-calendar"></i>27/02/2014</li>
-                                <li><i class="fa fa-thumbs-up"></i>13</li>
-                            </ul>
-                            <ul class="list-unstyled list-inline media-detail pull-right">
-                                <li class=""><a href="">Like</a></li>
-                                <li class=""><a href="">Reply</a></li>
-                            </ul>
-                        </div>
+                <!-- COMMENT 1 - START -->
+                <div class="media">
+                    <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""></a>
+                    <div class="media-body">
+                        <h4 class="media-heading">John Doe</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <ul class="list-unstyled list-inline media-detail pull-left">
+                            <li><i class="fa fa-calendar"></i>27/02/2014</li>
+                            <li><i class="fa fa-thumbs-up"></i>13</li>
+                        </ul>
+                        <ul class="list-unstyled list-inline media-detail pull-right">
+                            <li class=""><a href="">Like</a></li>
+                            <li class=""><a href="">Reply</a></li>
+                        </ul>
                     </div>
-
                 </div>
+
             </div>
         </div>
+    </div>
 
 
-        <!-- Second Half -->
-        <div class="col-md-6 p-0 bg-white h-md-100 loginarea">
-            <div class="d-md-flex align-items-center h-md-100 p-5 justify-content-center">
-                <!--  comment field here-->
-                <section class="content-item" id="comments">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-8">
-                                <form>
-                                    <h3 class="pull-left">New Comment</h3>
-                                    <button type="submit" class="btn btn-normal pull-right">Submit</button>
-                                    <fieldset>
-                                        <div class="row">
-                                            <div class="col-sm-3 col-lg-2 hidden-xs">
-                                                <img class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
-                                            </div>
-                                            <div class="form-group col-xs-12 col-sm-9 col-lg-10">
-                                                <textarea class="form-control" id="message" placeholder="Your message" required=""></textarea>
-                                            </div>
+    <!-- Second Half -->
+    <div class="col-md-6 p-0 bg-white h-md-100 loginarea">
+        <div class="d-md-flex align-items-center h-md-100 p-5 justify-content-center">
+            <!--  comment field here-->
+            <section class="content-item" id="comments">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <form>
+                                <h3 class="pull-left">New Comment</h3>
+                                <button type="submit" class="btn btn-normal pull-right">Submit</button>
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-lg-2 hidden-xs">
+                                            <img class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
                                         </div>
-                                    </fieldset>
-                                </form>
-                            </div>
+                                        <div class="form-group col-xs-12 col-sm-9 col-lg-10">
+                                            <textarea class="form-control" id="message" placeholder="Your message" required=""></textarea>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
                         </div>
                     </div>
-                </section>
-                                <!--  end of comment field -->
+                </div>
+            </section>
+            <!--  end of comment field -->
         </div>
     </div>
+</div>
 </body>
 </html>
