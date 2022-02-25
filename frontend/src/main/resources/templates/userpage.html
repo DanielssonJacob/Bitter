@@ -9,11 +9,21 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="..\static\tweet.css" />
+    <link rel="stylesheet" href="../static/tweet.css" />
     <link th:href="@{/tweet.css}" rel="stylesheet" />
   </head>
   <body>
+
     <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <img class="profile-picture" src="https://www.enadglobal7.com/wp-content/uploads/2021/09/blank-profile-picture-973460_640.png">
+        </div>
+        <div class="col-8">
+          <p th:text="${user.firstname}"></p>
+        </div>
+
+      </div>
       <div th:each="beet : ${userbeets}" class="tweet-wrap">
         <div class="tweet-header">
           <img src="" alt="profile picture" class="avator" />

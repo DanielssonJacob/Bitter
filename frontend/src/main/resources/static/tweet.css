@@ -85,3 +85,9 @@ img {
   margin-right: 10px;
 }
 }
+
+.profile-picture{
+    width: 75px;
+    border-radius: 60px;
+
+}
