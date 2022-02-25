@@ -31,6 +31,7 @@ public class User {
     private String email;
 
 
+
     public User(long id, String username, String password, String firstName, String lastName, LocalDate dateOfBirth, String email) {
         this.id = id;
         this.username = username;

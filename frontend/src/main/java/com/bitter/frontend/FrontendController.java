@@ -46,6 +46,14 @@ public class FrontendController {
 
         return "redirect:/";
     }
+
+    @GetMapping("/user/{username}")
+    public String getUser(@PathVariable("username") String username, Model model, RestTemplate restTemplate){
+        model.addAttribute("user", restTemplate.getForObject("http://localhost:8081/username/"+username,User.class));
+        model.addAttribute("userbeets", restTemplate.getForObject(
+                "http://localhost:8081/beet/"+username, ArrayList.class));
+        return "userpage";
+    }
     /*
     @PostMapping("/login")
     public String login (@Valid User user, BindingResult bindingResult){

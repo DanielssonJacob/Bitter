@@ -2,6 +2,7 @@ package com.bitter.backendapi;
 
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,12 @@ public class BeetRepo {
 
     public BeetRepo(){
         beets= new ArrayList<>();
+        beets.add(new Beet(1,"This is a beet", LocalDateTime.now(), "JD"));
+        beets.add(new Beet(1,"This is a beet", LocalDateTime.now(), "JD"));
+        beets.add(new Beet(1,"This is a beet", LocalDateTime.now(), "JD"));
+        beets.add(new Beet(1,"This is a beet", LocalDateTime.now(), "FF"));
+        beets.add(new Beet(1,"This is a beet", LocalDateTime.now(), "FF"));
+        beets.add(new Beet(1,"This is a beet", LocalDateTime.now(), "FF"));
     }
 
     public void createBeet(Beet beet){
