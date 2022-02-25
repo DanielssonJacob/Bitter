@@ -16,8 +16,8 @@
 
 <nav class="navbar navbar-expand-lg d-flex justify-content-end px-5 navbarbg-color">
 
-        <form class="d-flex my-2 my-lg-0 ">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form action="/user" method="POST" class="d-flex my-2 my-lg-0 ">
+            <input th:value="${username}" name="username" id="username" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
             <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
         </form>
 

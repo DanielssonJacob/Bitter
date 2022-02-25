@@ -56,6 +56,12 @@ public class FrontendController {
                 "http://localhost:8081/beet/"+username, ArrayList.class));
         return "userpage";
     }
+
+    @PostMapping("/user")
+    public String getUserHandler(@RequestParam("username") String username){
+
+        return "redirect:/user/" + username;
+    }
     /*
     @PostMapping("/login")
     public String login (@Valid User user, BindingResult bindingResult){
