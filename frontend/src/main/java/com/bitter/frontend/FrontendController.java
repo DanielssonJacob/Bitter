@@ -79,7 +79,7 @@ public class FrontendController {
         return "redirect:/";
     }
 
-    @PostMapping("/")
+    @PostMapping("/beets/create")
     public String createBeet (@ModelAttribute Beet beet, RestTemplate restTemplate, HttpSession session){
         Beet newBeet = restTemplate.postForObject("http://localhost:8081/beet", beet, Beet.class);
         session.setAttribute("beets",  restTemplate.getForObject(
