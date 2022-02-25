@@ -11,16 +11,49 @@
     />
     <link rel="stylesheet" href="../static/tweet.css" />
     <link th:href="@{/tweet.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="../static/styletest.css" />
+    <link th:href="@{/styletest.css}" rel="stylesheet" />
+    <!-- partial -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {}
+      },
+      darkMode: "class"
+    };
+
+    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+    if (
+      localStorage.getItem("color-theme") === "dark" ||
+      (!("color-theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  </script>
+
   </head>
-  <body>
+  <body class="gradient-custom">
 
     <div class="container">
-      <div class="row">
-        <div class="col-4">
-          <img class="profile-picture" src="https://www.enadglobal7.com/wp-content/uploads/2021/09/blank-profile-picture-973460_640.png">
-        </div>
-        <div class="col-8">
-          <p th:text="${user.firstname}"></p>
+      <div>
+        <div class="flex pb-6 items-center justify-between">
+          <div class="flex">
+            <a class="inline-block mr-4" href="#">
+              <img class="rounded-full max-w-none w-12 h-12" src="https://www.enadglobal7.com/wp-content/uploads/2021/09/blank-profile-picture-973460_640.png" />
+            </a>
+            <div class="flex flex-col">
+              <div>
+                <a class="inline-block text-lg font-bold dark:text-white" href="#"><span th:text="${user.firstname}"></span> <span th:text="${user.lastname}"></a>
+              </div>
+              <div class="text-slate-500 dark:text-slate-300 dark:text-slate-400">
+                <span th:text="${user.username}"></span>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
