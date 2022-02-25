@@ -10,6 +10,7 @@ import org.thymeleaf.templateparser.markup.HTMLTemplateParser;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -98,9 +99,11 @@ public class FrontendController {
         System.out.println(result);
         if(result){
             session.setAttribute("currentUser", restTemplate.getForObject("http://localhost:8081/username/"+loginForm.getUsername(),User.class));
-            session.setAttribute("beets",  restTemplate.getForObject(
+            ArrayList<Beet> beets = restTemplate.getForObject(
                     "http://localhost:8081/beet/"+((User)session.getAttribute("currentUser")).getUsername(),
-                    ArrayList.class));
+                    ArrayList.class);
+            Collections.reverse(beets);
+            session.setAttribute("beets", beets);
         }
         return "redirect:/";
     }
@@ -109,9 +112,11 @@ public class FrontendController {
     public String createBeet (@ModelAttribute Beet beet, RestTemplate restTemplate, HttpSession session){
         beet.setCreatedByUsername(((User)session.getAttribute("currentUser")).getUsername());
         Beet newBeet = restTemplate.postForObject("http://localhost:8081/beet", beet, Beet.class);
-        session.setAttribute("beets",  restTemplate.getForObject(
+        ArrayList<Beet> beets = restTemplate.getForObject(
                 "http://localhost:8081/beet/"+((User)session.getAttribute("currentUser")).getUsername(),
-                ArrayList.class));
+                ArrayList.class);
+        Collections.reverse(beets);
+        session.setAttribute("beets", beets);
 
         return "redirect:/";
     }
