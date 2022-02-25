@@ -27,13 +27,13 @@
                             <div class="mb-md-5 mt-md-4 pb-5">
                                 <img class="logo" src="../static/images/bitterLogo.png" alt="logo">
                                 <h2 class="fw-bold mb-2 text-uppercase">Welcome to Bitter</h2>
-                                <p class="text-white-50 mb-5">enter username and password</p>
+                                <p class="text-white-50 mb-5">login to say what's on your mind</p>
 
 
                                 <form action="/login" th:object="${loginForm}" method="POST">
                                     <div class="form-outline form-white mb-4">
                                         <input type="text" th:field="*{username}" id="typeEmailX" autofocus="autofocus"
-                                               placeholder="Enter Email" class="form-control form-control-lg" />
+                                               placeholder="username" class="form-control form-control-lg" />
 <!--
                                         <label class="form-label" for="typeEmailX">Username</label>
 -->
@@ -41,7 +41,7 @@
 
                                     <div class="form-outline form-white mb-4">
                                         <input type="password" th:field="*{password}" id="typePasswordX" autofocus="autofocus"
-                                               placeholder="Enter Password" class="form-control form-control-lg" />
+                                               placeholder="password" class="form-control form-control-lg" />
 <!--
                                         <label class="form-label" for="typePasswordX">Password</label>
 -->
