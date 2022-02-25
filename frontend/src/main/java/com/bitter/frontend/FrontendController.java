@@ -30,6 +30,7 @@ public class FrontendController {
     @GetMapping("/")
     public String index(Model model, HttpSession session){
         if(session.getAttribute("currentUser")!=null){
+            model.addAttribute("newbeet", new Beet());
             return "home";
         }
 
