@@ -28,6 +28,8 @@
         <div class="row">
             <div class="col-sm-5 col-md-6 col-12 pb-4">
                 <h1 class="spacing">Latest beets</h1>
+
+                <br>
                 <ul>
                     <li th:each="beet : ${session.beets}" class="darker">
 
@@ -43,7 +45,7 @@
                                 placeholder:text-slate-600 dark:placeholder:text-slate-300 font-medium pr-20"
                                 type="text" placeholder="Comment beet"/>
                             <span class="flex absolute right-3 top-2/4 -mt-3 items-center">
-                            <svg class="fill-blue-500 dark:fill-slate-50 " style="width: 24px; height: 24px;" viewBox="0 0 24 24">
+                            <svg class="fill-blue-500 hover:fill-blue-900 " style="width: 24px; height: 24px;" viewBox="0 0 24 24">
                                 <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"></path>
                             </svg>
                             </span>
@@ -52,7 +54,6 @@
 
                     </li>
                 </ul>
-
             </div>
 
             <!--POSTING A BEET-->
