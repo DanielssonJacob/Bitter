@@ -20,8 +20,19 @@ public class FrontendController {
         return "signup";
     }
 
+    @GetMapping("/logout")
+    public String logout (HttpSession session) {
+        session.setAttribute("currentUser", null);
+        return "redirect:/";
+    }
+
+
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model, HttpSession session){
+        if(session.getAttribute("currentUser")!=null){
+            return "home";
+        }
+
         model.addAttribute("loginForm", new LoginForm());
         return "login";
     }
@@ -56,7 +67,6 @@ public class FrontendController {
             session.setAttribute("beets",  restTemplate.getForObject(
                     "http://localhost:8081/beet/"+((User)session.getAttribute("currentUser")).getUsername(),
                     ArrayList.class));
-            return "home";
         }
         return "redirect:/";
 
