@@ -73,13 +73,14 @@ body {
     padding-left: 40px;
     padding-right: 30px;
     padding-top: 10px
+    display: list-item !important;
 }
 
 .comment h4,
 .comment span,
 .darker h4,
 .darker span {
-    display: inline
+display: list-item;
 }
 
 .comment p,
