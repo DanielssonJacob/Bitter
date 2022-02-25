@@ -3,6 +3,7 @@
 body{
     font-family: 'Quicksand', sans-serif !important;
      margin-top:20px;
+     padding-bottom:50px;
 }
 
 .header{
@@ -51,6 +52,7 @@ width: 20%;
 height:20%;
 padding-bottom: 20px;
 }
+
 /* --------------for splitscreeen ------------- */
 .bg-indigo {
   background: linear-gradient(to right,#26081C, #0CBABA)
