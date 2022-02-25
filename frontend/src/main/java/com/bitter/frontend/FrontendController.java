@@ -32,7 +32,7 @@ public class FrontendController {
     public String index(Model model, HttpSession session){
         if(session.getAttribute("currentUser")!=null){
             model.addAttribute("newbeet", new Beet());
-            return "home";
+            return "tryHome";
         }
 
         model.addAttribute("loginForm", new LoginForm());
@@ -72,7 +72,7 @@ public class FrontendController {
     public String level1(){
         return "tryHome";
     }
-
+    */
     @PostMapping("/home")
     public String level1post(HttpSession session, @RequestParam String beet){
         List<String> list = (List<String>)session.getAttribute("beetList");
@@ -84,7 +84,7 @@ public class FrontendController {
 
         return "tryHome";
     }
-     */
+
     //when user is the correct user
     @PostMapping("/login")
     public String login (@ModelAttribute LoginForm loginForm, RestTemplate restTemplate, HttpSession session){
