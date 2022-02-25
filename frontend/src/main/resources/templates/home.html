@@ -1,84 +1,97 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../static/style.css">
-    <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon-32x32.png"> <!--added a favicon-->
 
-    <!-- Bootstrap -->
+    <title>Beet homepage</title>
+    <link rel="stylesheet" href="../static/normalize.css" th:href="'/normalize.css'">
+    <link rel="stylesheet" href="../static/myStyle.css" th:href="'/myStyle.css'">
+    <link rel="icon" type="img" sizes="32x32" href="../static/images/favicon-32x32.png" th:href="'/images/favicon-32x32.png.css'">
+    <!--Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
             crossorigin="anonymous"></script>
-    <title>Bitter Homepage</title>
+
 </head>
 <body>
 
-<h1 th:text="${session.currentUser.getUsername}"></h1>
-<div class="d-md-flex h-md-100 align-items-center">
+<nav class="navbar navbar-expand-lg d-flex justify-content-end px-5 navbarbg-color">
 
-    <!-- First Half -->
-    <div class="col-md-6 p-0 bg-indigo h-md-100">
-        <div class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
-            <div class="logoarea pt-5 pb-5">
+        <form class="d-flex my-2 my-lg-0 ">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
 
-                <h3>4 Comments</h3>
+</nav>
 
-                <!-- COMMENT 1 - START -->
-                <div class="media">
-                    <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""></a>
-                    <div class="media-body">
-                        <h4 class="media-heading">John Doe</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <ul class="list-unstyled list-inline media-detail pull-left">
-                            <li><i class="fa fa-calendar"></i>27/02/2014</li>
-                            <li><i class="fa fa-thumbs-up"></i>13</li>
-                        </ul>
-                        <ul class="list-unstyled list-inline media-detail pull-right">
-                            <li class=""><a href="">Like</a></li>
-                            <li class=""><a href="">Reply</a></li>
-                        </ul>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5 col-md-6 col-12 pb-4">
+                <h1>Latest beets</h1>
+                <ul >
+                    <li th:each="beet : ${session.beetList}" class="darker"
+                        style="width: 30rem; background-color: #222; color: #fff;">
+                        <!--                        <div th:each="beet : ${session.beetList}" class="comment mt-4 text-justify float-left">
+
+
+
+                                                </div>-->
+                        <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40">
+                        <h4>USERNAME HERE</h4> <span>- ADD TODAYS DATE</span> <br>
+                        <p th:text="${beet}"></p>
+
+<!--                        <div class="relative"><input
+                                class="pt-2 pb-2 pl-3 w-full h-11 bg-slate-100 dark:bg-slate-600 rounded-lg
+                                placeholder:text-slate-600 dark:placeholder:text-slate-300 font-medium pr-20"
+                                type="text" placeholder="Write a comment"/>
+                            <span class="flex absolute right-3 top-2/4 -mt-3 items-center">
+                            <svg class="mr-2" style="width: 26px; height: 26px;" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,
+                            8 0 0,0 20,12M22,12A10,10 0 0,1 12,22A10,10 0 0,
+                            1 2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12M10,9.5C10,10.3 9.3,11 8.5,11C7.7,11 7,10.3 7,
+                            9.5C7,8.7 7.7,8 8.5,8C9.3,8 10,8.7 10,9.5M17,9.5C17,10.3 16.3,11 15.5,11C14.7,11 14,
+                            10.3 14,9.5C14,8.7 14.7,8 15.5,8C16.3,8 17,8.7 17,9.5M12,17.23C10.25,17.23 8.71,16.5 7.81,
+                            15.42L9.23,14C9.68,14.72 10.75,15.23 12,15.23C13.25,15.23 14.32,14.72 14.77,14L16.19,
+                            15.42C15.29,16.5 13.75,17.23 12,17.23Z"></path>
+                            </svg>
+                            <svg class="fill-blue-500 dark:fill-slate-50" style="width: 24px; height: 24px;" viewBox="0 0 24 24">
+                                <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"></path>
+                            </svg>
+                            </span>
+                        </div>-->
+                    </li>
+                </ul>
+<!--
+                <div class="darker mt-4 text-justify">
+                    <img src="https://i.imgur.com/CFpa3nK.jpg" alt="" class="rounded-circle" width="40" height="40">
+                    <h4>MV</h4> <span>- 24 February, 2022</span> <br>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda
+                        hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+                </div>-->
+            </div>
+
+            <!--POSTING A BEET-->
+            <div class="col-lg-4 col-md-5 col-sm-4 offset-md-2 offset-sm-2 col-12 mt-4">
+
+                <form action="/home" method="post" id="algin-form" class="form_postBeet">
+                    <div class="form-group">
+                        <h4>Feeling bitter?</h4>
+                        <label for="message"></label>
+                        <textarea name="beet" id="beet" cols="30" rows="5" class="form-control">
+                        </textarea>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <button type="submit" id="post" class="btn">Share beet</button>
+                    </div>
+                </form>
 
             </div>
+
         </div>
     </div>
-
-
-    <!-- Second Half -->
-    <div class="col-md-6 p-0 bg-white h-md-100 loginarea">
-        <div class="d-md-flex align-items-center h-md-100 p-5 justify-content-center">
-            <!--  comment field here-->
-            <section class="content-item" id="comments">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <form>
-                                <h3 class="pull-left">New Comment</h3>
-                                <button type="submit" class="btn btn-normal pull-right">Submit</button>
-                                <fieldset>
-                                    <div class="row">
-                                        <div class="col-sm-3 col-lg-2 hidden-xs">
-                                            <img class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
-                                        </div>
-                                        <div class="form-group col-xs-12 col-sm-9 col-lg-10">
-                                            <textarea class="form-control" id="message" placeholder="Your message" required=""></textarea>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!--  end of comment field -->
-        </div>
-    </div>
-</div>
+</section>
 </body>
 </html>

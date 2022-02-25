@@ -32,7 +32,7 @@ public class FrontendController {
     public String index(Model model, HttpSession session){
         if(session.getAttribute("currentUser")!=null){
             model.addAttribute("newbeet", new Beet());
-            return "tryHome";
+            return "home";
         }
 
         model.addAttribute("loginForm", new LoginForm());
@@ -82,7 +82,7 @@ public class FrontendController {
         }
         list.add(beet);
 
-        return "tryHome";
+        return "home";
     }
 
     //when user is the correct user
