@@ -59,9 +59,60 @@ public class FrontendController {
             return "home";
         }
         return "redirect:/";
-
-
     }
+
+    @PostMapping("/")
+    public String createBeet (@ModelAttribute Beet beet, RestTemplate restTemplate, HttpSession session){
+        Beet newBeet = restTemplate.postForObject("http://localhost:8081/beet", beet, Beet.class);
+        session.setAttribute("beets",  restTemplate.getForObject(
+                "http://localhost:8081/beet/"+((User)session.getAttribute("currentUser")).getUsername(),
+                ArrayList.class));
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/beets")
+    public String getBeets(RestTemplate restTemplate){
+        restTemplate.getForObject("http://localhost:8081/beet", ArrayList.class);
+        return "beets";
+    }
+
+    @GetMapping("/beets/{username}")
+    public String getBeetsByUser(@PathVariable("username") String username, RestTemplate restTemplate){
+        restTemplate.getForObject("http://localhost:8081/beet/"+ username, ArrayList.class);
+        return "beets";
+    }
+
+    @GetMapping("/beets/get/{id}")
+    public String getBeetsById(@PathVariable("id") long id, RestTemplate restTemplate){
+        restTemplate.getForObject("http://localhost:8081/beet/"+id,Beet.class);
+        return "beets";
+    }
+
+    @PutMapping("/beets/edit/{id}")
+    public String editBeet(@PathVariable("id") long id, @RequestParam("message") String message, RestTemplate restTemplate,HttpSession session){
+
+        if(((User)session.getAttribute("currentuser")).getUsername().equals
+                (restTemplate.getForObject("http://localhost:8081/beet/"+ id, Beet.class)
+                        .getCreatedByUsername()))
+        {
+            restTemplate.put("http://localhost:8081/beet/"+id, message, Beet.class);
+            return "redirect:/";
+        }
+        return "redirect:/";
+    }
+
+    @DeleteMapping("/beets/delete/{id}")
+    public String deleteBeet(@PathVariable("id") long id, RestTemplate restTemplate, HttpSession session){
+        if(((User)session.getAttribute("currentuser")).getUsername().equals
+                (restTemplate.getForObject("http://localhost:8081/beet/"+ id, Beet.class)
+                        .getCreatedByUsername())) {
+            restTemplate.delete("http://localhost:8081/beet/" + id, Beet.class);
+            return "redirect:/";
+        }
+        return "redirect:/";
+    }
+
 }
 
 
