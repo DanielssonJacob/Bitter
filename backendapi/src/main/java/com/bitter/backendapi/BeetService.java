@@ -17,6 +17,14 @@ public class BeetService {
         repo.createBeet(newBeet);
     }
 
+    public Beet createBeet(Beet beet) {
+        beet.setId(id.getAndIncrement());
+        beet.setCreatedAt(LocalDateTime.now());
+        repo.createBeet(beet);
+        return beet;
+
+    }
+
     public void editBeet(long id, String message){
         Beet edited = new Beet(id, message, LocalDateTime.now(), repo.getBeetById(id).getCreatedByUsername());
         repo.editBeet(edited);

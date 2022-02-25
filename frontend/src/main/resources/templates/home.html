@@ -32,16 +32,15 @@
             <div class="col-sm-5 col-md-6 col-12 pb-4">
                 <h1>Latest beets</h1>
                 <ul >
-                    <li th:each="beet : ${session.beetList}" class="darker"
-                        style="width: 30rem; background-color: #222; color: #fff;">
+                    <li th:each="beet : ${session.beets}" class="darker" style="width: 30rem; background-color: #222; color: #fff;">
                         <!--                        <div th:each="beet : ${session.beetList}" class="comment mt-4 text-justify float-left">
 
 
 
                                                 </div>-->
                         <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40">
-                        <h4>USERNAME HERE</h4> <span>- ADD TODAYS DATE</span> <br>
-                        <p th:text="${beet}"></p>
+                        <h4 th:text="${session.currentUser.username}">USERNAME HERE</h4> <span th:text="${beet.createdAt}">- ADD TODAYS DATE</span> <br>
+                        <p th:text="${beet.message}"></p>
 
 <!--                        <div class="relative"><input
                                 class="pt-2 pb-2 pl-3 w-full h-11 bg-slate-100 dark:bg-slate-600 rounded-lg
@@ -76,11 +75,11 @@
             <!--POSTING A BEET-->
             <div class="col-lg-4 col-md-5 col-sm-4 offset-md-2 offset-sm-2 col-12 mt-4">
 
-                <form action="/home" method="post" id="algin-form" class="form_postBeet">
+                <form action="/beets/create" th:object="${newbeet}" method="post" id="algin-form" class="form_postBeet">
                     <div class="form-group">
                         <h4>Feeling bitter?</h4>
                         <label for="message"></label>
-                        <textarea name="beet" id="beet" cols="30" rows="5" class="form-control">
+                        <textarea th:field="*{message}" name="beet" id="beet" cols="30" rows="5" class="form-control">
                         </textarea>
                     </div>
                     <div class="form-group">

@@ -3,6 +3,7 @@ package com.bitter.backendapi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -15,8 +16,10 @@ public class BeetController {
     public List<Beet> beets(){ return repo.getBeets(); }
 
     @PostMapping("/beet")
-    public void postBeet(@RequestParam("username") String username, @RequestParam("message") String message){
-         service.createBeet(username,message);
+    public Beet postBeet(@RequestBody Beet beet){
+
+        return service.createBeet(beet);
+
     }
 
     @GetMapping("/beetid/{id}")

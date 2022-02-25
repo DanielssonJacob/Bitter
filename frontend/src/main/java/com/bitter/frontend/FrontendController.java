@@ -101,6 +101,7 @@ public class FrontendController {
 
     @PostMapping("/beets/create")
     public String createBeet (@ModelAttribute Beet beet, RestTemplate restTemplate, HttpSession session){
+        beet.setCreatedByUsername(((User)session.getAttribute("currentUser")).getUsername());
         Beet newBeet = restTemplate.postForObject("http://localhost:8081/beet", beet, Beet.class);
         session.setAttribute("beets",  restTemplate.getForObject(
                 "http://localhost:8081/beet/"+((User)session.getAttribute("currentUser")).getUsername(),
