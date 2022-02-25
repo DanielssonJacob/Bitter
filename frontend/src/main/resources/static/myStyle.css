@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
 
+ul {
+    list-style: none;
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+}
+
 
 body{
 font-family: 'Quicksand', sans-serif !important;
@@ -17,6 +24,10 @@ h1,
 h4 {
     color: white;
     font-weight: bold
+}
+
+h1{
+font-size: 30px !important;
 }
 /**/
 label {
@@ -105,6 +116,7 @@ background-color: #212529 !important;
     background-color: #0cbaba !important;
     border-color: #0cbaba !important;
     color: white !important;
+    margin: 10px;
 }
 
 .spacing{
@@ -114,6 +126,11 @@ padding-bottom: 20px;
 .section_home{
 margin-top: 20px;
 padding-top:20px;
+}
+
+.btn-outline-light{
+    border-color: #a88734 #9c7e31 #846a29 !important;
+    margin: 10px;
 }
 /*======== ID:s =========== */
 
@@ -133,21 +150,21 @@ padding-top:20px;
 #profile {
     background-color: unset
 }
-
+/*
 #post {
     margin: 10px;
     padding: 6px;
     padding-top: 2px;
     padding-bottom: 2px;
     text-align: center;
-    background-color: #ecb21f; /* yellow*/
+    background-color: #ecb21f; *//* yellow*//*
     border-color: #a88734 #9c7e31 #846a29;
     color: black;
     border-width: 1px;
     border-style: solid;
     border-radius: 13px;
     width: 50%
-}
+}*/
 
 #align-form {
     margin-top: 20px
