@@ -10,6 +10,7 @@ import org.thymeleaf.templateparser.markup.HTMLTemplateParser;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class FrontendController {
@@ -26,7 +27,7 @@ public class FrontendController {
         return "redirect:/";
     }
 
-
+    // login
     @GetMapping("/")
     public String index(Model model, HttpSession session){
         if(session.getAttribute("currentUser")!=null){
@@ -65,8 +66,26 @@ public class FrontendController {
         return "login";
 
     }
-     */
 
+    // posting when logged in
+    @GetMapping("/home")
+    public String level1(){
+        return "tryHome";
+    }
+
+    @PostMapping("/home")
+    public String level1post(HttpSession session, @RequestParam String beet){
+        List<String> list = (List<String>)session.getAttribute("beetList");
+        if (list == null) {
+            list = new ArrayList<>();
+            session.setAttribute("beetList", list);
+        }
+        list.add(beet);
+
+        return "tryHome";
+    }
+     */
+    //when user is the correct user
     @PostMapping("/login")
     public String login (@ModelAttribute LoginForm loginForm, RestTemplate restTemplate, HttpSession session){
         boolean result = (restTemplate.postForObject("http://localhost:8081/validate",loginForm,Boolean.class));
