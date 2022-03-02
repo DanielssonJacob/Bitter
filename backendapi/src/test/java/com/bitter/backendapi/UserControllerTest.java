@@ -13,8 +13,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.time.LocalDate;
 
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -31,13 +30,18 @@ class UserControllerTest {
     @Test
     void addUserObj() throws Exception {
         mvc.perform(MockMvcRequestBuilders.post("/adduserobj")
-                .content(mapper.writeValueAsString(new User(0, "NotJD", "password123","Not", "JD", LocalDate.now(),"mail@mail.com")))
+                .content(mapper.writeValueAsString(new User(0L, "NotJD", "password123","Not", "JD", LocalDate.now(),"mail@mail.com")))
                 .contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().is2xxSuccessful())
                 .andExpect(MockMvcResultMatchers.content().string(containsString("NotJD")));
     }
 
     @Test
     void loginUser() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.post("/adduserobj")
+                        .content(mapper.writeValueAsString(new User(null, "JD", "password123","Not", "JD", LocalDate.now(),"mail@mail.com")))
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().is2xxSuccessful())
+                .andExpect(MockMvcResultMatchers.content().string(containsString("JD")));
+
         mvc.perform(MockMvcRequestBuilders.post("/validate")
                         .content(mapper.writeValueAsString(new LoginForm("JD","password123")))
                         .contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().is2xxSuccessful())
@@ -46,6 +50,20 @@ class UserControllerTest {
     }
 
     @Test
-    void deleteUser() {
+    void deleteUser() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.post("/adduserobj")
+                        .content(mapper.writeValueAsString(new User(null, "JD", "password123","Not", "JD", LocalDate.now(),"mail@mail.com")))
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().is2xxSuccessful())
+                .andExpect(MockMvcResultMatchers.content().string(containsString("JD")));
+
+        mvc.perform(MockMvcRequestBuilders.post("/deleteuser")
+                        .content(mapper.writeValueAsString(new User(1L, "JD", "password123","Not", "JD", LocalDate.now(),"mail@mail.com")))
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().is2xxSuccessful());
+
+        mvc.perform(MockMvcRequestBuilders.get("/username/JD")
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().is2xxSuccessful())
+                .andExpect(MockMvcResultMatchers.content().string(not(containsString("JD"))));
+
+
     }
 }
