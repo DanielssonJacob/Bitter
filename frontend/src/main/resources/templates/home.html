@@ -20,6 +20,9 @@
             <input th:value="${username}" name="username" id="username" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-light" type="submit">Search</button>
         </form>
+    <form action="/logout" method="GET" class="d-flex my-2 my-lg-0 ">
+        <button class="btn btn-outline-light" type="submit">log out</button>
+    </form>
 
 </nav>
 
@@ -32,7 +35,7 @@
                     <li th:each="beet : ${session.beets}" class="darker li_spacing">
 
                         <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40">
-                        <h4 th:text="${session.currentUser.username}">USERNAME HERE</h4> <span th:text="${beet.createdAt}">- ADD TODAYS DATE</span> <br>
+                        <h4 th:text="${session.currentUser.username}"></h4> <span th:text="${beet.createdAt}"></span> <br>
                         <p th:text="${beet.message}"></p>
 
                         --COMMENT BOX
