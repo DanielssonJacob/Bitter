@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class UserRepository {
+public class OldUserRepository {
     private List<User> users;
 
-    public UserRepository(){
+    public OldUserRepository(){
         users = new ArrayList<>();
         users.add(new User(1L,"JD","password123" ,"Jacob", "Danielsson", LocalDate.now(), "jd@mail.com"));
         users.add(new User(2L,"FF","password123" ,"Felix", "Frost", LocalDate.now(), "ff@mail.com"));

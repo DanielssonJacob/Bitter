@@ -3,13 +3,13 @@ package com.bitter.backendapi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
 public class BeetController {
 
-    @Autowired BeetRepo repo;
+    @Autowired
+    OldBeetRepo repo;
     @Autowired BeetService service;
 
     @GetMapping("/beet")

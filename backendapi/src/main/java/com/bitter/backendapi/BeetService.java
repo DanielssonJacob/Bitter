@@ -8,7 +8,8 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class BeetService {
-    @Autowired BeetRepo repo;
+    @Autowired
+    OldBeetRepo repo;
 
     private final AtomicLong id = new AtomicLong(1452);
 

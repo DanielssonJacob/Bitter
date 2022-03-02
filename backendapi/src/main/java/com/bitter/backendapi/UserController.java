@@ -3,7 +3,6 @@ package com.bitter.backendapi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -13,7 +12,7 @@ public class UserController {
     UserService userService;
 
     @Autowired
-    UserRepository userRepo;
+    OldUserRepository userRepo;
 
     @GetMapping("/userid/{id}")
     User getUser(@PathVariable("id") long id){

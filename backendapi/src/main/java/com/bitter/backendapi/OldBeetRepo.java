@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class BeetRepo {
+public class OldBeetRepo {
 
     private List<Beet> beets;
 
-    public BeetRepo(){
+    public OldBeetRepo(){
         beets= new ArrayList<>();
         beets.add(new Beet(1,"This is a beet", LocalDateTime.now(), "JD"));
         beets.add(new Beet(1,"This is a beet", LocalDateTime.now(), "JD"));
