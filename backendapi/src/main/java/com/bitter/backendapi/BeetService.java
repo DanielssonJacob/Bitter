@@ -11,24 +11,19 @@ public class BeetService {
     @Autowired
     OldBeetRepo repo;
 
-    private final AtomicLong id = new AtomicLong(1452);
-
-    public void createBeet(String username, String message) {
-        Beet newBeet = new Beet(id.getAndIncrement(),message,LocalDateTime.now(),username);
-        repo.createBeet(newBeet);
-    }
+    @Autowired
+    BeetRepository beetRepository;
 
     public Beet createBeet(Beet beet) {
-        beet.setId(id.getAndIncrement());
         beet.setCreatedAt(LocalDateTime.now());
-        repo.createBeet(beet);
         return beet;
-
     }
 
-    public void editBeet(long id, String message){
-        Beet edited = new Beet(id, message, LocalDateTime.now(), repo.getBeetById(id).getCreatedByUsername());
-        repo.editBeet(edited);
+    public Beet editBeet(long id, String message){
+        Beet beet = beetRepository.findById(id).orElseThrow();
+        beet.setMessage(message);
+        return beetRepository.save(beet);
     }
+
 
 }

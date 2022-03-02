@@ -12,34 +12,36 @@ public class BeetController {
     OldBeetRepo repo;
     @Autowired BeetService service;
 
+    @Autowired
+    BeetRepository beetRepository;
+
     @GetMapping("/beet")
-    public List<Beet> beets(){ return repo.getBeets(); }
+    public List<Beet> beets(){ return beetRepository.findAll();}
 
     @PostMapping("/beet")
     public Beet postBeet(@RequestBody Beet beet){
 
-        return service.createBeet(beet);
-
+        return beetRepository.save(service.createBeet(beet));
     }
 
     @GetMapping("/beetid/{id}")
     public Beet getBeetById(@PathVariable long id){
-        return repo.getBeetById(id);
+        return beetRepository.findById(id).orElse(new Beet());
     }
 
     @GetMapping("/beet/{username}")
     public List<Beet> getBeetByUser(@PathVariable String username){
-        return repo.getBeetByUser(username);
+        return beetRepository.findByCreatedByUsername(username);
     }
 
     @DeleteMapping("/beet/{id}")
     public void deleteBeet(@PathVariable long id){
-       repo.deleteBeet(id);
+       beetRepository.deleteById(id);
     }
 
     @PutMapping("/beet/{id}")
-    public void editBeet(@PathVariable long id, String message){
-        service.editBeet(id, message);
+    public Beet editBeet(@PathVariable long id, String message){
+        return service.editBeet(id, message);
     }
 
 }

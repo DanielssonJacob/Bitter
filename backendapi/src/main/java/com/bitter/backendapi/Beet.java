@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
@@ -12,15 +14,15 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 
+@Entity
 public class Beet {
 
-        @NotEmpty @Positive
-        private long id;
-        @NotEmpty @Max(140)
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
+        @Size (min= 1, max = 140)
         private String message;
-        @NotEmpty
         private LocalDateTime createdAt;
-        @NotEmpty @Max(30)
         private String createdByUsername;
 
 }

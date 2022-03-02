@@ -12,13 +12,7 @@ public class OldBeetRepo {
     private List<Beet> beets;
 
     public OldBeetRepo(){
-        beets= new ArrayList<>();
-        beets.add(new Beet(1,"This is a beet", LocalDateTime.now(), "JD"));
-        beets.add(new Beet(1,"This is a beet", LocalDateTime.now(), "JD"));
-        beets.add(new Beet(1,"This is a beet", LocalDateTime.now(), "JD"));
-        beets.add(new Beet(1,"This is a beet", LocalDateTime.now(), "FF"));
-        beets.add(new Beet(1,"This is a beet", LocalDateTime.now(), "FF"));
-        beets.add(new Beet(1,"This is a beet", LocalDateTime.now(), "FF"));
+
     }
 
     public void createBeet(Beet beet){
