@@ -39,6 +39,8 @@ public class UserController {
 
     @PostMapping("/validate")
     boolean loginUser(@RequestBody LoginForm loginForm){
+        if (userRepository.findByUsername(loginForm.getUsername()) == null)
+            return false;
         return userService.validate(userRepository.findByUsername(loginForm.getUsername()), loginForm.getPassword());
     }
 
