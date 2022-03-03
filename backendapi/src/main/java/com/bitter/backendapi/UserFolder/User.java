@@ -1,4 +1,4 @@
-package com.bitter.backendapi;
+package com.bitter.backendapi.UserFolder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

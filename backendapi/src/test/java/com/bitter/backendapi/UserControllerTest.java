@@ -1,6 +1,8 @@
 package com.bitter.backendapi;
 
+
 import com.bitter.backendapi.UserFolder.User;
+import com.bitter.backendapi.UserFolder.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +14,10 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
+
 
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -34,7 +36,7 @@ class UserControllerTest {
     @Test
     void addUserObj() throws Exception {
         mvc.perform(MockMvcRequestBuilders.post("/adduserobj")
-                .content(mapper.writeValueAsString(new User(0L, "NotJD", "password123","Not", "JD", LocalDate.now(),"mail@mail.com")))
+                .content(mapper.writeValueAsString(new User(null, "NotJD", "password123","Not", "JD", LocalDate.now(),"mail@mail.com")))
                 .contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().is2xxSuccessful())
                 .andExpect(MockMvcResultMatchers.content().string(containsString("NotJD")));
     }
@@ -42,12 +44,12 @@ class UserControllerTest {
     @Test
     void loginUser() throws Exception {
         mvc.perform(MockMvcRequestBuilders.post("/adduserobj")
-                        .content(mapper.writeValueAsString(new User(null, "JD", "password123","Not", "JD", LocalDate.now(),"mail@mail.com")))
+                        .content(mapper.writeValueAsString(new User(null, "JS", "password123","Not", "JD", LocalDate.now(),"mail@mail.com")))
                         .contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().is2xxSuccessful())
-                .andExpect(MockMvcResultMatchers.content().string(containsString("JD")));
+                .andExpect(MockMvcResultMatchers.content().string(containsString("JS")));
 
         mvc.perform(MockMvcRequestBuilders.post("/validate")
-                        .content(mapper.writeValueAsString(new LoginForm("JD","password123")))
+                        .content(mapper.writeValueAsString(new LoginForm("JS","password123")))
                         .contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().is2xxSuccessful())
                 .andExpect(MockMvcResultMatchers.content().string(containsString("true")));
 
@@ -56,17 +58,17 @@ class UserControllerTest {
     @Test
     void deleteUser() throws Exception {
         mvc.perform(MockMvcRequestBuilders.post("/adduserobj")
-                        .content(mapper.writeValueAsString(new User(null, "JD", "password123","Not", "JD", LocalDate.now(),"mail@mail.com")))
+                        .content(mapper.writeValueAsString(new User(null, "JS", "password123","Not", "JD", LocalDate.now(),"mail@mail.com")))
                         .contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().is2xxSuccessful())
-                .andExpect(MockMvcResultMatchers.content().string(containsString("JD")));
+                .andExpect(MockMvcResultMatchers.content().string(containsString("JS")));
 
         mvc.perform(MockMvcRequestBuilders.post("/deleteuser")
-                        .content(mapper.writeValueAsString(new User(1L, "JD", "password123","Not", "JD", LocalDate.now(),"mail@mail.com")))
+                        .content(mapper.writeValueAsString(new User(1L, "JS", "password123","Not", "JD", LocalDate.now(),"mail@mail.com")))
                         .contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().is2xxSuccessful());
 
-        mvc.perform(MockMvcRequestBuilders.get("/username/JD")
+        mvc.perform(MockMvcRequestBuilders.get("/username/HS")
                         .contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().is2xxSuccessful())
-                .andExpect(MockMvcResultMatchers.content().string(not(containsString("JD"))));
+                .andExpect(MockMvcResultMatchers.content().string(not(containsString("JS"))));
 
 
     }

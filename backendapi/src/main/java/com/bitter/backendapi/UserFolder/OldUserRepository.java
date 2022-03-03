@@ -1,6 +1,6 @@
 package com.bitter.backendapi.UserFolder;
 
-import com.bitter.backendapi.User;
+
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;

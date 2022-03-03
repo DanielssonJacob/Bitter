@@ -125,11 +125,23 @@ public class FrontendController {
     @PutMapping("/beets/edit/{id}")
     public String editBeet(@PathVariable("id") long id, @RequestParam("message") String message, RestTemplate restTemplate,HttpSession session){
 
-        if(((User)session.getAttribute("currentuser")).getUsername().equals
+        if(((User)session.getAttribute("currentUser")).getUsername().equals
                 (restTemplate.getForObject("http://localhost:8081/beet/"+ id, Beet.class)
                         .getCreatedByUsername()))
         {
             restTemplate.put("http://localhost:8081/beet/"+id, message, Beet.class);
+            return "redirect:/";
+        }
+        return "redirect:/";
+    }
+
+    @PutMapping("/editbeet")
+    public String editBeet(@ModelAttribute Beet beet, RestTemplate restTemplate,HttpSession session){
+        if(((User)session.getAttribute("currentuser")).getUsername().equals
+                (restTemplate.getForObject("http://localhost:8081/beet/"+ beet.getId(), Beet.class)
+                        .getCreatedByUsername()))
+        {
+            restTemplate.put("http://localhost:8081/editbeet", beet);
             return "redirect:/";
         }
         return "redirect:/";

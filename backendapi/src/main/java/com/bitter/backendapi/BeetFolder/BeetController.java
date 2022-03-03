@@ -44,4 +44,9 @@ public class BeetController {
         return service.editBeet(id, message);
     }
 
+    @PutMapping("/editbeet")
+    public void editBeet(@RequestBody Beet beet){
+        beetRepository.save(beet);
+    }
+
 }
