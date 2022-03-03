@@ -142,6 +142,9 @@ public class FrontendController {
                         .getCreatedByUsername()))
         {
             restTemplate.put("http://localhost:8081/editbeet", beet);
+            ArrayList<Beet> beets = restTemplate.getForObject(
+                    "http://localhost:8081/beet/"+((User)session.getAttribute("currentUser")).getUsername(),
+                    ArrayList.class);
             return "redirect:/";
         }
         return "redirect:/";
