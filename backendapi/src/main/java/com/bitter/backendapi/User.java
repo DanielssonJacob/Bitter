@@ -1,4 +1,5 @@
 package com.bitter.backendapi;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,17 +10,22 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="usernametable")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     @Size(min=1, max=30)
     @Column(name="username")
     private String username;
@@ -35,6 +41,9 @@ public class User {
     @Email
     private String email;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<User> friends = new ArrayList<>();
+
 
     public User(Long id, String username, String password, String firstName, String lastName, LocalDate dateOfBirth, String email) {
         this.id = id;
@@ -44,6 +53,10 @@ public class User {
         this.lastname = lastName;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
+    }
+
+    public void addFriend(User user){
+        friends.add(user);
     }
 
 
