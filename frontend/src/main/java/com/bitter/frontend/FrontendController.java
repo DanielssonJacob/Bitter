@@ -135,12 +135,18 @@ public class FrontendController {
         return "redirect:/";
     }
 
-    @DeleteMapping("/beets/delete/{id}")
+    @PostMapping("/beets/delete/{id}")
     public String deleteBeet(@PathVariable("id") long id, RestTemplate restTemplate, HttpSession session){
-        if(((User)session.getAttribute("currentuser")).getUsername().equals
-                (restTemplate.getForObject("http://localhost:8081/beet/"+ id, Beet.class)
+        if(((User)session.getAttribute("currentUser")).getUsername().equals
+                (restTemplate.getForObject("http://localhost:8081/beetid/"+ id, Beet.class)
                         .getCreatedByUsername())) {
             restTemplate.delete("http://localhost:8081/beet/" + id, Beet.class);
+            //here we make a new updated list with the existing beets minus the deleted one
+            ArrayList<Beet> beets = restTemplate.getForObject(
+                    "http://localhost:8081/beet/"+((User)session.getAttribute("currentUser")).getUsername(),
+                    ArrayList.class);
+            Collections.reverse(beets);
+            session.setAttribute("beets", beets);
             return "redirect:/";
         }
         return "redirect:/";

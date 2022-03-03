@@ -21,18 +21,27 @@
                     <h1 class="spacing">Latest beets</h1>
                     <ul>
                         <li th:each="beet : ${session.beets}" class="darker li_spacing">
+                            <div class="d-flex justify-content-between">
+                           <div> <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40"></div>
+                            <h4 th:text="${session.currentUser.username}"></h4> <span th:text="${beet.createdAt}"></span> <br>
+                            <!-- DELETE BEET BUTTON -->
+                            <form method="POST" th:action="@{|/beets/delete/${beet.id}|}">
+                                <input type="submit" class ="btn btn-outline-light btn-sm" value="delete beet"/>
+                            </form>
 
-                            <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40">
-                            <h4 th:text="${session.currentUser.username}">USERNAME HERE</h4> <span th:text="${beet.createdAt}">- ADD TODAYS DATE</span> <br>
+
+                             </div>
                             <p th:text="${beet.message}"></p>
 
-                            --COMMENT BOX
+                            <!--COMMENT BOX-->
                             <br>
                             <br>
                             <div class="relative"><input
                                     class="pt-2 pb-2 pl-3 min-w-full h-8 bg-slate-100 dark:bg-slate-600 rounded-lg
                                     placeholder:text-slate-600 dark:placeholder:text-slate-300 font-medium pr-20"
                                     type="text" placeholder="Comment beet"/>
+                                <!-- LIKE BEET-BUTTON -->
+                                <button class="btn btn-block btn-primary"><i class="like">Like</i> </button>
                                 <span class="flex absolute right-3 top-2/4 -mt-3 items-center">
                                 <svg class="fill-yellow-400 hover:fill-yellow-600 " style="width: 24px; height: 24px;" viewBox="0 0 24 24">
                                     <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"></path>

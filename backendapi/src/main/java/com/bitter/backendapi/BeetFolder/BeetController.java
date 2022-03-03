@@ -1,4 +1,4 @@
-package com.bitter.backendapi;
+package com.bitter.backendapi.BeetFolder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +21,6 @@ public class BeetController {
     //
     @PostMapping("/beet")
     public Beet postBeet(@RequestBody Beet beet){
-
         return beetRepository.save(service.createBeet(beet));
     }
 

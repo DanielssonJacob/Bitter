@@ -1,5 +1,6 @@
-package com.bitter.backendapi;
+package com.bitter.backendapi.UserFolder;
 
+import com.bitter.backendapi.LoginForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,6 +57,11 @@ public class UserController {
             user.addFriend(userRepository.findByUsername(friend));
             userRepository.save(user);
         }
+    }
+
+    @GetMapping("/friends")
+    List<User> getFriends(@RequestBody User user){
+        return userRepository.findById(user.getId()).get().getFriends();
     }
 
 
