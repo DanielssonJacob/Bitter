@@ -1,10 +1,10 @@
-package com.bitter.backendapi;
+package com.bitter.backendapi.BeetFolder;
 
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Repository
 public class OldBeetRepo {
@@ -50,7 +50,7 @@ public class OldBeetRepo {
 
     public void editBeet(Beet newBeet){
         for (Beet beet : beets) {
-            if(beet.getId() == newBeet.getId())
+            if(Objects.equals(beet.getId(), newBeet.getId()))
                 beet.setId(newBeet.getId());
                 beet.setMessage(newBeet.getMessage());
                 beet.setCreatedAt(newBeet.getCreatedAt());

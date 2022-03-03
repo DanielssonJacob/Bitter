@@ -1,10 +1,11 @@
-package com.bitter.backendapi;
+package com.bitter.backendapi.UserFolder;
 
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Repository
 public class OldUserRepository {
@@ -21,7 +22,7 @@ public class OldUserRepository {
 
     public User getUserById(Long id) {
         for (User user : users) {
-            if (user.getId()==(id)) {
+            if (Objects.equals(user.getId(), id)) {
                 return user;
             }
         }
@@ -44,7 +45,7 @@ public class OldUserRepository {
 
     public void deleteUserById(Long id){
         for (User user : users) {
-            if (user.getId()==id) {
+            if (Objects.equals(user.getId(), id)) {
                 users.remove(user);
                 break;
             }

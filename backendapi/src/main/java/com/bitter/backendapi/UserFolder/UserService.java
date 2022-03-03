@@ -1,4 +1,4 @@
-package com.bitter.backendapi;
+package com.bitter.backendapi.UserFolder;
 
 import org.springframework.stereotype.Service;
 

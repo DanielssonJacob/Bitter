@@ -1,5 +1,6 @@
-package com.bitter.backendapi;
+package com.bitter.backendapi.UserFolder;
 
+import com.bitter.backendapi.LoginForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
