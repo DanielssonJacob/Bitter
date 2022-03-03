@@ -49,6 +49,15 @@ public class UserController {
         userRepository.delete(user);
     }
 
+    @PutMapping("/{username}/{friend}")
+    void addFriend(@PathVariable("username") String username, @PathVariable("friend") String friend){
+        if(userRepository.findByUsername(username)!=null && userRepository.findByUsername(friend)!=null){
+            User user = userRepository.findByUsername(username);
+            user.addFriend(userRepository.findByUsername(friend));
+            userRepository.save(user);
+        }
+    }
+
 
 
 
