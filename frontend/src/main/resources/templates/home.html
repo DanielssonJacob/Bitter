@@ -13,9 +13,109 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="vh-100" >
+<div th:insert="fragments/header::header"></div>
+
+<div class="container vh-100">
+    <div class="row">
+
+        <div class="d-flex justify-content-between flex-sm-row flex-column-reverse">
+            <div  style="overflow-y:scroll; overflow-x:hidden; height:100vh;">
+                <h1 class="spacing">Latest beets</h1>
+                <ul>
+                    <li th:each="beet : ${session.beets}" class="darker li_spacing">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <img class="rounded-circle" width="40" height="40" th:src="@{images/angry.png}" src="../static/images/bitterLogo.png" alt="logo">
+                            </div>
+                            <h4 th:text="${session.currentUser.username}"></h4> <span th:text="${beet.createdAt}"></span> <br>
+                            <!-- DELETE BEET BUTTON -->
+                            <form th:method="delete" th:action="'/delete/' + ${beet.id}">
+                                <input type="submit" class ="btn btn-outline-light btn-sm" value="delete beet"/>
+                            </form>
+                        </div>
+                        <p th:text="${beet.message}"></p>
+
+                        <!--COMMENT BOX-->
+                        <br>
+                        <br>
+                        <div class="relative"><input
+                                class="pt-2 pb-2 pl-3 min-w-full h-8 bg-slate-100 dark:bg-slate-600 rounded-lg
+                                        placeholder:text-slate-600 dark:placeholder:text-slate-300 font-medium pr-20"
+                                type="text" placeholder="Comment beet"/>
+                            <!-- LIKE BEET-BUTTON -->
+                            <button class="btn btn-block btn-primary">
+                                <i class="like">Like</i>
+                            </button>
+                            <span class="flex absolute right-3 top-2/4 -mt-3 items-center">
+                                    <svg class="fill-yellow-400 hover:fill-yellow-600 " style="width: 24px; height: 24px;" viewBox="0 0 24 24">
+                                        <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"></path>
+                                    </svg>
+                                    </span>
+                        </div>
+                        <br>
+                    </li>
+                </ul>
+            </div>
+
+
+            <!--POSTING A BEET-->
+            <div>
+
+                <form action="/beets/create" th:object="${newbeet}" method="post" id="algin-form" class="form_postBeet">
+                    <div class="form-group">
+                        <h4>Feeling bitter?</h4>
+                        <!--<label for="message"></label>-->
+                        <textarea th:field="*{message}" name="beet" id="beet" cols="30" rows="5" class="form-control">
+                                </textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" id="post" class="btn btn-outline-light btn-sm">Share beet</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</div>
+
+<div th:insert="fragments/footer::footer"></div>
+
+
+<!--BootStrap script-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
+
+
+<!-- ORIGINAL LAYOUT
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Beet homepage</title>
+    &lt;!&ndash;<link rel="stylesheet" href="../static/normalize.css" th:href="'/normalize.css'">&ndash;&gt;
+    <link rel="stylesheet" href="../static/myStyle.css" th:href="'/myStyle.css'">
+    <link rel="icon" type="img" sizes="32x32" href="../static/images/favicon-32x32.png" th:src="'/images/favicon-32x32.png.css'">
+    &lt;!&ndash;Bootstrap&ndash;&gt;
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="vh-100" >
     <div th:insert="fragments/header::header"></div>
 
-        <div class="container">
+        <div class="container vh-100">
             <div class="row">
                 <div class="col-sm-5 col-md-6 col-12 pb-4">
                     <h1 class="spacing">Latest beets</h1>
@@ -24,23 +124,21 @@
                             <div class="d-flex justify-content-between">
                            <div> <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40"></div>
                             <h4 th:text="${session.currentUser.username}"></h4> <span th:text="${beet.createdAt}"></span> <br>
-                            <!-- DELETE BEET BUTTON -->
-                            <form method="POST" th:action="@{|/beets/delete/${beet.id}|}">
+                            &lt;!&ndash; DELETE BEET BUTTON &ndash;&gt;
+                            <form th:method="delete" th:action="'/delete/' + ${beet.id}">
                                 <input type="submit" class ="btn btn-outline-light btn-sm" value="delete beet"/>
                             </form>
-
-
                              </div>
                             <p th:text="${beet.message}"></p>
 
-                            <!--COMMENT BOX-->
+                            &lt;!&ndash;COMMENT BOX&ndash;&gt;
                             <br>
                             <br>
                             <div class="relative"><input
                                     class="pt-2 pb-2 pl-3 min-w-full h-8 bg-slate-100 dark:bg-slate-600 rounded-lg
                                     placeholder:text-slate-600 dark:placeholder:text-slate-300 font-medium pr-20"
                                     type="text" placeholder="Comment beet"/>
-                                <!-- LIKE BEET-BUTTON -->
+                                &lt;!&ndash; LIKE BEET-BUTTON &ndash;&gt;
                                 <button class="btn btn-block btn-primary"><i class="like">Like</i> </button>
                                 <span class="flex absolute right-3 top-2/4 -mt-3 items-center">
                                 <svg class="fill-yellow-400 hover:fill-yellow-600 " style="width: 24px; height: 24px;" viewBox="0 0 24 24">
@@ -53,13 +151,13 @@
                     </ul>
                 </div>
 
-                <!--POSTING A BEET-->
+                &lt;!&ndash;POSTING A BEET&ndash;&gt;
                 <div class="col-lg-4 col-md-5 col-sm-4 offset-md-2 offset-sm-2 col-12 mt-4">
 
                     <form action="/beets/create" th:object="${newbeet}" method="post" id="algin-form" class="form_postBeet">
                         <div class="form-group">
                             <h4>Feeling bitter?</h4>
-                            <!--<label for="message"></label>-->
+                            &lt;!&ndash;<label for="message"></label>&ndash;&gt;
                             <textarea th:field="*{message}" name="beet" id="beet" cols="30" rows="5" class="form-control">
                             </textarea>
                         </div>
@@ -75,7 +173,7 @@
         <div th:insert="fragments/footer::footer"></div>
 
 
-<!--BootStrap script-->
+&lt;!&ndash;BootStrap script&ndash;&gt;
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -84,4 +182,4 @@
         crossorigin="anonymous"></script>
 
 </body>
-</html>
+</html>-->

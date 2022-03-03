@@ -107,9 +107,9 @@ display: list-item;
 background-color: #212529 !important;
 }
 
-.navbar__logo{
-width: 20%;
-height:20%;
+.navbar__logo {
+    width: 40px;
+    height: auto;
 }
 
 /* FOOTER */
