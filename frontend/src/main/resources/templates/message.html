@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>MESSAGE!!</p>
+
+
+<div th:each="msg : ${msg}">
+            <h4 th:text="${msg.createdByUsername}"></h4>
+            <p th:text="${msg.message}">
+            </p>
+        </div>
+</div>
+</body>
+</html>

@@ -1,14 +1,13 @@
 package com.bitter.frontend;
 
+import org.apache.logging.log4j.message.Message;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import org.thymeleaf.templateparser.markup.HTMLTemplateParser;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -163,6 +162,30 @@ public class FrontendController {
         return "tryHome";
     }
     */
+
+
+    @GetMapping("/message")
+    public String getmsg(RestTemplate restTemplate, Model model){
+         List<Message> msg  = restTemplate.getForObject("http://localhost:8081/message", ArrayList.class);
+         model.addAttribute("msg", msg);
+        return "message";
+    }
+
+    @GetMapping("/message/{username}")
+    public String getmsgforuser(RestTemplate restTemplate, Model model, @PathVariable String username){
+        List<Message> msg  = restTemplate.getForObject("http://localhost:8081/message/" + username, ArrayList.class);
+        model.addAttribute("msg", msg);
+        return "message";
+    }
+
+
+
+    @GetMapping("/message1")
+    public String getMessages(RestTemplate restTemplate, Model model, HttpSession session){
+        List<Message> msg  = restTemplate.getForObject("http://localhost:8081/message/" + ((User)session.getAttribute("currentUser")).getUsername(), ArrayList.class);
+        model.addAttribute("msg", msg);
+        return "message";
+    }
 }
 
 
