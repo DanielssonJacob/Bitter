@@ -12,6 +12,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -19,6 +21,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 class UserControllerTest {
+
+    @Autowired
+    UserRepository userRepository;
 
     @Autowired
     MockMvc mvc;
@@ -62,6 +67,23 @@ class UserControllerTest {
         mvc.perform(MockMvcRequestBuilders.get("/username/JD")
                         .contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().is2xxSuccessful())
                 .andExpect(MockMvcResultMatchers.content().string(not(containsString("JD"))));
+
+
+    }
+
+    @Test
+    void addFriendsTest(){
+        /*
+        List<User> userList = Arrays.asList(new User(""));
+        userRepository.saveAll();
+         */
+
+        if(userRepository.findByUsername("JD")!=null && userRepository.findByUsername("AS")!=null){
+            User user = userRepository.findByUsername("JD");
+            user.addFriend(userRepository.findByUsername("AS"));
+            userRepository.save(user);
+        }
+        assertTrue(userRepository.findByUsername("JD").getFriends().get(0).getUsername().equals("AS"));
 
 
     }

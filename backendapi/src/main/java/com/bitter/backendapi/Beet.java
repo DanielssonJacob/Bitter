@@ -23,6 +23,6 @@ public class Beet {
         @Size (min= 1, max = 140)
         private String message;
         private LocalDateTime createdAt;
-        private String createdByUsername;
+        private String createdByUsername; //column namnet!
 
 }
