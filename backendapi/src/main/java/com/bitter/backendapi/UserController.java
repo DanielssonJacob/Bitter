@@ -58,6 +58,11 @@ public class UserController {
         }
     }
 
+    @GetMapping("/friends")
+    List<User> getFriends(@RequestBody User user){
+        return userRepository.findById(user.getId()).get().getFriends();
+    }
+
 
 
 
