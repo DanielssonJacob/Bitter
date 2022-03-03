@@ -19,13 +19,9 @@
         <form action="/user" method="POST" class="d-flex my-2 my-lg-0 ">
             <input th:value="${username}" name="username" id="username" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-light" type="submit">Search</button>
-        </form>
-    <form action="/logout" method="GET" class="d-flex my-2 my-lg-0 ">
-        <button class="btn btn-outline-light" type="submit">log out</button>
-    </form>
-
 </nav>
 
+<!-- BEET THAT IS POSTED -->
 <section class="section_home">
     <div class="container">
         <div class="row">
@@ -33,22 +29,33 @@
                 <h1 class="spacing">Latest beets</h1>
                 <ul>
                     <li th:each="beet : ${session.beets}" class="darker li_spacing">
-
-                        <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40">
+                       <div class="d-flex justify-content-between">
+                           <div><img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40"></div>
+                           <!-- DELETE BEET BUTTON -->
+                           <form th:method="delete" th:action="'/delete/' + ${beet.id}">
+                               <input type="submit" class ="btn btn-outline-light btn-sm" value="delete beet"/>
+                           </form>
+                       </div>
                         <h4 th:text="${session.currentUser.username}"></h4> <span th:text="${beet.createdAt}"></span> <br>
                         <p th:text="${beet.message}"></p>
 
-                        --COMMENT BOX
+
+
+                        <!--COMMENT BOX -->
                         <br>
                         <br>
                         <div class="relative"><input
                                 class="pt-2 pb-2 pl-3 min-w-full h-8 bg-slate-100 dark:bg-slate-600 rounded-lg
                                 placeholder:text-slate-600 dark:placeholder:text-slate-300 font-medium pr-20"
                                 type="text" placeholder="Comment beet"/>
+                            <!-- LIKE BEET-BUTTON -->
+                            <button class="btn btn-block btn-primary"><i class="like">Like</i> </button>
+
                             <span class="flex absolute right-3 top-2/4 -mt-3 items-center">
                             <svg class="fill-yellow-400 hover:fill-yellow-600 " style="width: 24px; height: 24px;" viewBox="0 0 24 24">
                                 <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"></path>
                             </svg>
+
                             </span>
                         </div>
                         <br>
