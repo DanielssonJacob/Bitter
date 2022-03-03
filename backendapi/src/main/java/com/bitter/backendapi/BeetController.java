@@ -18,6 +18,7 @@ public class BeetController {
     @GetMapping("/beet")
     public List<Beet> beets(){ return beetRepository.findAll();}
 
+    //
     @PostMapping("/beet")
     public Beet postBeet(@RequestBody Beet beet){
 

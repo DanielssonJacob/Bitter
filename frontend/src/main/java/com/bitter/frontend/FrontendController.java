@@ -63,23 +63,7 @@ public class FrontendController {
 
         return "redirect:/user/" + username;
     }
-    /*
-    @PostMapping("/login")
-    public String login (@Valid User user, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            return "signup";
-        }
 
-        return "login";
-
-    }
-
-    // posting when logged in
-    @GetMapping("/home")
-    public String level1(){
-        return "tryHome";
-    }
-    */
     @PostMapping("/home")
     public String level1post(HttpSession session, @RequestParam String beet){
         List<String> list = (List<String>)session.getAttribute("beetList");
@@ -162,7 +146,23 @@ public class FrontendController {
         }
         return "redirect:/";
     }
+    /*
+    @PostMapping("/login")
+    public String login (@Valid User user, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "signup";
+        }
 
+        return "login";
+
+    }
+
+    // posting when logged in
+    @GetMapping("/home")
+    public String level1(){
+        return "tryHome";
+    }
+    */
 }
 
 

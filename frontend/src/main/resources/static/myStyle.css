@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
 
+/** {
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}*/
+
 ul {
     list-style: none;
     padding: 0 !important;
@@ -37,7 +43,21 @@ label {
 
 
 /*======== CLASSES =========== */
+.scroll{
+ overflow: auto !important;
+ max-height: 100vh !important;
 
+}
+
+/*
+.row{
+justify-content: space-between !important;
+}
+*/
+
+/*.mt-4{
+margin-top: 0rem !important;
+}*/
 .comments {
     margin-top: 5%;
     margin-left: 20px
@@ -82,18 +102,27 @@ display: list-item;
     color: rgb(184, 183, 183)
 }
 
+/* NAVBAR */
 .navbarbg-color{
-  background: white;
-
-
+background-color: #212529 !important;
 }
 
-.form-group input,
+.navbar__logo{
+width: 20%;
+height:20%;
+}
+
+/* FOOTER */
+.footer__text{
+color: #fff;
+}
+/* FORM */
+/*.form-group input,
 .form-group textarea {
     background-color: black;
     border: 1px solid rgba(16, 46, 46, 1);
     border-radius: 12px
-}
+}*/
 
 .form-control{
     color: black !important;
@@ -112,9 +141,7 @@ display: list-item;
   background-color: #150811;
 }
 
-.navbarbg-color{
-background-color: #212529 !important;
-}
+
 
 .btn-primary{
     background-color: #0cbaba !important;
