@@ -12,16 +12,16 @@
           integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="vh-100">
 <div th:insert="fragments/header::header"></div>
 
-<section class="section_home">
+<section class="vh-100">
     <div class="container">
         <div class="row">
 
-            <div class="d-flex justify-content-around flex-sm-row flex-column">
+            <div class="d-flex justify-content-around flex-sm-row flex-column-reverse">
 
-                <div>
+                <div class="scroll" style="overflow-y:scroll; overflow-x:hidden; height:400px;">
                     <h1 class="spacing">Latest beets</h1>
                     <ul>
                         <li th:each="beet : ${session.beets}" class="darker">
@@ -51,7 +51,7 @@
 
 
                 <!--POSTING A BEET-->
-                <div class="align-self-end">
+                <div>
 <!--
                     <h1 class="spacing">Latest beets</h1>
 -->
@@ -74,9 +74,10 @@
             </div>
         </div>
     </div>
+    <div th:insert="fragments/footer::footer"></div>
 </section>
 
-<div th:insert="fragments/footer::footer"></div>
+
 <!--BootStrap script-->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

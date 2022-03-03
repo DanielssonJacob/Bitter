@@ -12,10 +12,9 @@
           integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="vh-100" >
     <div th:insert="fragments/header::header"></div>
 
-    <section class="section_home">
         <div class="container">
             <div class="row">
                 <div class="col-sm-5 col-md-6 col-12 pb-4">
@@ -64,9 +63,9 @@
 
             </div>
         </div>
-    </section>
+        <div th:insert="fragments/footer::footer"></div>
 
-    <div th:insert="fragments/footer::footer"></div>
+
 <!--BootStrap script-->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
