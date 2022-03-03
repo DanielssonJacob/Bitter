@@ -25,13 +25,15 @@
                            <div> <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40"></div>
                             <h4 th:text="${session.currentUser.username}"></h4> <span th:text="${beet.createdAt}"></span> <br>
                             <!-- DELETE BEET BUTTON -->
-                            <form th:method="delete" th:action="'/delete/' + ${beet.id}">
+                            <form method="POST" th:action="@{|/beets/delete/${beet.id}|}">
                                 <input type="submit" class ="btn btn-outline-light btn-sm" value="delete beet"/>
                             </form>
+
+
                              </div>
                             <p th:text="${beet.message}"></p>
 
-                            --COMMENT BOX
+                            <!--COMMENT BOX-->
                             <br>
                             <br>
                             <div class="relative"><input
