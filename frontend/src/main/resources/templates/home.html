@@ -13,10 +13,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="vh-100" >
-    <div th:insert="fragments/header::header"></div>
 
-        <div class="container">
-            <div class="row">
+<div th:insert="fragments/header::header"></div>
+
+<div class="container">
+    <div class="row">
                 <div class="col-sm-5 col-md-6 col-12 pb-4">
                     <h1 class="spacing">Latest beets</h1>
                     <ul>
@@ -38,8 +39,8 @@
                                     <input type="hidden" th:field="*{createdBy}"/>
                                     <input type="submit" class ="btn btn-outline-light btn-sm" value="edit beet"/>
                                 </form>
-                                <!--<a th:href="@{|/beets/edit/${beet.id}|}">Edit beet</a>-->
-                                    -->
+                                <!<a th:href="@{|/beets/edit/${beet.id}|}">Edit beet</a>-->
+                              
 
                              </div>
                             <p th:text="${beet.message}"></p>
@@ -78,8 +79,15 @@
                         </div>
                     </form>
 
+                    <div class="col-lg-4 col-md-5 col-sm-4 offset-md-2 offset-sm-2 col-12 mt-4">
+                        <h2>MESSAGES!</h2>
+                        <div th:each="msg : ${msg}">
+                            <p th:text="${msg.createdByUsername}"></p>
+                            <p th:text="${msg.message}">
+                            </p>
+                        </div>
+                    </div>
                 </div>
-
             </div>
         </div>
         <div th:insert="fragments/footer::footer"></div>

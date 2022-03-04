@@ -29,9 +29,11 @@ public class FrontendController {
 
     // login
     @GetMapping("/")
-    public String index(Model model, HttpSession session){
+    public String index(Model model, HttpSession session, RestTemplate restTemplate){
         if(session.getAttribute("currentUser")!=null){
             model.addAttribute("newbeet", new Beet());
+            List<Message> msg  = restTemplate.getForObject("http://localhost:8081/message/" + ((User)session.getAttribute("currentUser")).getUsername(), ArrayList.class);
+            model.addAttribute("msg", msg);
             return "home";
         }
 
@@ -44,8 +46,6 @@ public class FrontendController {
 
         User newUser = restTemplate.postForObject("http://localhost:8081/adduserobj",user, User.class);
         System.out.println(newUser.getFirstname());
-
-
         return "redirect:/";
     }
 
@@ -202,10 +202,10 @@ public class FrontendController {
 
 
     @GetMapping("/message1")
-    public String getMessages(RestTemplate restTemplate, Model model, HttpSession session){
+    public String getMessages(RestTemplate restTemplate, HttpSession session){
         List<Message> msg  = restTemplate.getForObject("http://localhost:8081/message/" + ((User)session.getAttribute("currentUser")).getUsername(), ArrayList.class);
-        model.addAttribute("msg", msg);
-        return "message";
+        session.setAttribute("msg", msg);
+        return "redirect:/";
     }
 }
 
