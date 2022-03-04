@@ -77,10 +77,10 @@ class UserControllerTest {
                 .andExpect(MockMvcResultMatchers.content().string(containsString("JS")));
 
         mvc.perform(MockMvcRequestBuilders.post("/deleteuser")
-                        .content(mapper.writeValueAsString(new User(1L, "JS", "password123","Not", "JD", LocalDate.now(),"mail@mail.com")))
+                        .content(mapper.writeValueAsString(new User(6L, "JS", "password123","Not", "JD", LocalDate.now(),"mail@mail.com")))
                         .contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().is2xxSuccessful());
 
-        mvc.perform(MockMvcRequestBuilders.get("/username/HS")
+        mvc.perform(MockMvcRequestBuilders.get("/username/JS")
                         .contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().is2xxSuccessful())
                 .andExpect(MockMvcResultMatchers.content().string(not(containsString("JS"))));
 
