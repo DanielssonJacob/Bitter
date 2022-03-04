@@ -15,12 +15,15 @@
 <h1>Change existing beet</h1>
 
 <div class="col-lg-4 col-md-5 col-sm-4 offset-md-2 offset-sm-2 col-12 mt-4">
-    <form th:object="${beet}" action="/editbeet" method="POST">
-        New text: <input type="text" th:field="*{message}"/>
+    <form th:object="${beet}" action="/editbeet" method="POST" id="algin-form" class="form_postBeet">
+        <div class="form group">
+        New text:<textarea th:field="*{message}" name="beet" id="beet" cols="30" rows="5" class="form-control">
+        </textarea>
         <input type="hidden" th:field="*{id}"/>
         <input type="hidden" th:field="*{createdAt}"/>
         <input type="hidden" th:field="*{createdByUsername}"/>
         <input type="submit" class ="btn btn-outline-light btn-sm" value="Save Beet">
+        </div>
 </form>
     <!--
 
