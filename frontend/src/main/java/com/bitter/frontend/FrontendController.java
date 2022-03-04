@@ -29,9 +29,13 @@ public class FrontendController {
 
     // login
     @GetMapping("/")
-    public String index(Model model, HttpSession session){
+    public String index(Model model, HttpSession session, RestTemplate restTemplate){
         if(session.getAttribute("currentUser")!=null){
             model.addAttribute("newbeet", new Beet());
+            session.setAttribute("beets", restTemplate.getForObject(
+                    "http://localhost:8081/beet/"+((User)session.getAttribute("currentUser")).getUsername(), ArrayList.class));
+            List<Message> msg  = restTemplate.getForObject("http://localhost:8081/message/" + ((User)session.getAttribute("currentUser")).getUsername(), ArrayList.class);
+            model.addAttribute("msg", msg);
             return "home";
         }
 
@@ -135,19 +139,25 @@ public class FrontendController {
         return "redirect:/";
     }
 
-    @PutMapping("/editbeet")
-    public String editBeet(@ModelAttribute Beet beet, RestTemplate restTemplate,HttpSession session){
-        if(((User)session.getAttribute("currentuser")).getUsername().equals
-                (restTemplate.getForObject("http://localhost:8081/beet/"+ beet.getId(), Beet.class)
+    @PostMapping("/editbeet")
+    public String editBeet(@ModelAttribute("beet") Beet beet, RestTemplate restTemplate, HttpSession session){
+        if(((User)session.getAttribute("currentUser")).getUsername().equals
+                (restTemplate.getForObject("http://localhost:8081/beetid/"+ beet.getId(), Beet.class)
                         .getCreatedByUsername()))
         {
             restTemplate.put("http://localhost:8081/editbeet", beet);
-            ArrayList<Beet> beets = restTemplate.getForObject(
-                    "http://localhost:8081/beet/"+((User)session.getAttribute("currentUser")).getUsername(),
-                    ArrayList.class);
+
             return "redirect:/";
         }
         return "redirect:/";
+    }
+
+    @GetMapping("/editform")
+    public String editform(@RequestParam("beetId") long beetId, Model model, RestTemplate restTemplate){
+        Beet beet = restTemplate.getForObject("http://localhost:8081/beetid/"+beetId,Beet.class);
+        model.addAttribute("beet", beet);
+
+        return "editform";
     }
 
     @PostMapping("/beets/delete/{id}")
@@ -202,10 +212,10 @@ public class FrontendController {
 
 
     @GetMapping("/message1")
-    public String getMessages(RestTemplate restTemplate, Model model, HttpSession session){
+    public String getMessages(RestTemplate restTemplate, HttpSession session){
         List<Message> msg  = restTemplate.getForObject("http://localhost:8081/message/" + ((User)session.getAttribute("currentUser")).getUsername(), ArrayList.class);
-        model.addAttribute("msg", msg);
-        return "message";
+        session.setAttribute("msg", msg);
+        return "redirect:/";
     }
 }
 
