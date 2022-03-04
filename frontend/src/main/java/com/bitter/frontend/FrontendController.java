@@ -32,7 +32,7 @@ public class FrontendController {
     public String index(Model model, HttpSession session, RestTemplate restTemplate){
         if(session.getAttribute("currentUser")!=null){
             model.addAttribute("newbeet", new Beet());
-            model.addAttribute("userbeets", restTemplate.getForObject(
+            session.setAttribute("beets", restTemplate.getForObject(
                     "http://localhost:8081/beet/"+((User)session.getAttribute("currentUser")).getUsername(), ArrayList.class));
             List<Message> msg  = restTemplate.getForObject("http://localhost:8081/message/" + ((User)session.getAttribute("currentUser")).getUsername(), ArrayList.class);
             model.addAttribute("msg", msg);
