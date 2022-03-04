@@ -75,8 +75,16 @@
                         </div>
                     </form>
 
-                </div>
+                    <div class="container">
+                        <h2>MESSAGES!</h2>
 
+                        <div th:each="msg : ${msg}" class="darker li_spacing">
+                            <p th:text="${msg.createdByUsername}"></p>
+                            <p th:text="${msg.message}">
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div th:insert="fragments/footer::footer"></div>
