@@ -28,7 +28,18 @@
                             <form method="POST" th:action="@{|/beets/delete/${beet.id}|}">
                                 <input type="submit" class ="btn btn-outline-light btn-sm" value="delete beet"/>
                             </form>
+                                <!-- EDIT BEET BUTTON -->
+                                <!-- HÄR SKA DET VARA NÅGOT SLAGS FORM FÖR ATT EDITERA BEET
+                                <form th:if="beet != null" method="GET" th:object="${beet}" th:action="@{/editform}">
 
+                                    <input type="hidden" th:field="*{id}"/>
+                                    <input type="hidden" th:field="*{message}"/>
+                                    <input type="hidden" th:field="*{createdAt}"/>
+                                    <input type="hidden" th:field="*{createdBy}"/>
+                                    <input type="submit" class ="btn btn-outline-light btn-sm" value="edit beet"/>
+                                </form>
+                                <!--<a th:href="@{|/beets/edit/${beet.id}|}">Edit beet</a>-->
+                                    -->
 
                              </div>
                             <p th:text="${beet.message}"></p>
@@ -55,7 +66,6 @@
 
                 <!--POSTING A BEET-->
                 <div class="col-lg-4 col-md-5 col-sm-4 offset-md-2 offset-sm-2 col-12 mt-4">
-
                     <form action="/beets/create" th:object="${newbeet}" method="post" id="algin-form" class="form_postBeet">
                         <div class="form-group">
                             <h4>Feeling bitter?</h4>

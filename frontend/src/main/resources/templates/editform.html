@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>Edit Beet</title>
+    <!--<link rel="stylesheet" href="../static/normalize.css" th:href="'/normalize.css'">-->
+    <link rel="stylesheet" href="../static/myStyle.css" th:href="'/myStyle.css'">
+    <link rel="icon" type="img" sizes="32x32" href="../static/images/favicon-32x32.png" th:src="'/images/favicon-32x32.png.css'">
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<h1>Change existing beet</h1>
+
+<div class="col-lg-4 col-md-5 col-sm-4 offset-md-2 offset-sm-2 col-12 mt-4">
+    <form th:object="${beet}" action="/editbeet" method="PUT">
+        New text: <input type="text" th:field="*{message}"/>
+        <input type="hidden" th:field="*{id}"/>
+        <input type="hidden" th:field="*{createdAt}"/>
+        <input type="hidden" th:field="*{createdBy}"/>
+        <input type="submit" class ="btn btn-outline-light btn-sm" value="Save Beet">
+</form>
+
+    <form action="/beets/create" th:object="${newbeet}" method="post" id="algin-form" class="form_postBeet">
+        <div class="form-group">
+            <h4>Edit your beet here:</h4>
+            <!--<label for="message"></label>-->
+            <textarea th:field="*{message}" name="beet" id="beet" cols="30" rows="5" class="form-control">
+                            </textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit" id="post" class="btn btn-outline-light btn-sm" value="Save Beet">share updated beet</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
