@@ -20,7 +20,7 @@
                 <div class="col-sm-5 col-md-6 col-12 pb-4">
                     <h1 class="spacing">Latest beets</h1>
                     <ul>
-                        <li th:each="beet : ${session.beets}" class="darker li_spacing">
+                        <li th:each="beet,index: ${session.beets}" class="darker li_spacing">
                             <div class="d-flex justify-content-between">
                            <div> <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40"></div>
                             <h4 th:text="${session.currentUser.username}"></h4> <span th:text="${beet.createdAt}"></span> <br>
@@ -29,17 +29,13 @@
                                 <input type="submit" class ="btn btn-outline-light btn-sm" value="delete beet"/>
                             </form>
                                 <!-- EDIT BEET BUTTON -->
-                                <!-- HÄR SKA DET VARA NÅGOT SLAGS FORM FÖR ATT EDITERA BEET
-                                <form th:if="beet != null" method="GET" th:object="${beet}" th:action="@{/editform}">
-
-                                    <input type="hidden" th:field="*{id}"/>
-                                    <input type="hidden" th:field="*{message}"/>
-                                    <input type="hidden" th:field="*{createdAt}"/>
-                                    <input type="hidden" th:field="*{createdBy}"/>
+                                <!-- HÄR SKA DET VARA NÅGOT SLAGS FORM FÖR ATT EDITERA BEET-->
+                                <form method="GET" action="/editform">
+                                    <input type="hidden" name="beetId" th:value="${beet.id}">
                                     <input type="submit" class ="btn btn-outline-light btn-sm" value="edit beet"/>
                                 </form>
                                 <!--<a th:href="@{|/beets/edit/${beet.id}|}">Edit beet</a>-->
-                                    -->
+
 
                              </div>
                             <p th:text="${beet.message}"></p>
