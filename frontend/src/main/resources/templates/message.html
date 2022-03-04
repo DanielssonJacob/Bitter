@@ -9,7 +9,7 @@
 
 
 <div th:each="msg : ${msg}">
-            <h4 th:text="${msg.createdByUsername}"></h4>
+            <p th:text="${msg.createdByUsername}"></p>
             <p th:text="${msg.message}">
             </p>
         </div>
