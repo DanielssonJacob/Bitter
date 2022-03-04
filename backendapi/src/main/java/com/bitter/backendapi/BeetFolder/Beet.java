@@ -28,7 +28,7 @@ public class Beet {
         private String message;
         private LocalDateTime createdAt;
         private String createdByUsername;
-        @OneToMany
+        @OneToMany(fetch= FetchType.EAGER)
         private List<Comment> comments = new ArrayList<>();
 
         public Beet(Long id, String message, LocalDateTime createdAt, String createdByUsername) {

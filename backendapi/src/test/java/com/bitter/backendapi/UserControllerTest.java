@@ -1,6 +1,10 @@
 package com.bitter.backendapi;
 
 
+import com.bitter.backendapi.BeetFolder.Beet;
+import com.bitter.backendapi.BeetFolder.BeetRepository;
+import com.bitter.backendapi.CommentFolder.Comment;
+import com.bitter.backendapi.CommentFolder.CommentRepository;
 import com.bitter.backendapi.UserFolder.User;
 import com.bitter.backendapi.UserFolder.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,9 +18,13 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -26,6 +34,12 @@ class UserControllerTest {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    BeetRepository beetRepository;
+
+    @Autowired
+    CommentRepository commentRepository;
 
     @Autowired
     MockMvc mvc;
@@ -88,5 +102,18 @@ class UserControllerTest {
         assertTrue(userRepository.findByUsername("JD").getFriends().get(0).getUsername().equals("AS"));
 
 
+    }
+
+    @Test
+    void addCommentTest() throws Exception{
+            beetRepository.save(new Beet(1L, "Hej", LocalDateTime.now(), "FF"));
+            Comment comment = new Comment(null, "Hej på dig", (User)userRepository.findById(1L).get(), (Beet)beetRepository.findById(1L).get());
+            commentRepository.save(comment);
+            Beet beet = beetRepository.findById(1L).get();
+                    beet.addComment(comment);
+                    beetRepository.save(beet);
+
+
+        assertEquals("Hej på dig", beetRepository.findById(1L).get().getComments().get(0).getText());
     }
 }
